@@ -1,0 +1,7 @@
+{
+  "name": "yarn-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "packageManager": "yarn@4.3.1"
+}
