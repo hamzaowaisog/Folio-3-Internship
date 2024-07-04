@@ -3,43 +3,44 @@ import PropTypes from 'prop-types';
 import { getContact } from "../contact";
 
 export async function loader({ params }){
-    const contact = await getContact(params.contactId);
-    return {contact};
+    const contacts = await getContact(params.contactId);
+    console.log('Fetched Contact:' , contacts);
+    return {contacts};
 
 }
 
 export default function Contact() {
-  const contact = useLoaderData();
+  const {contacts} = useLoaderData();
   return (
     <div id="contact">
       <div>
         <img
-          key={contact.avatar}
+          key={contacts.avatar}
           src={
-            contact.avatar ||
-            `https://robohash.org/${contact.id}.png?size=200x200`
+            contacts.avatar ||
+            `https://robohash.org/${contacts.id}.png?size=200x200`
           }
         />
       </div>
       <div>
         <h1>
-          {contact.first || contact.last ? (
+          {contacts.first || contacts.last ? (
             <>
-              {contact.first} {contact.last}
+              {contacts.first} {contacts.last}
             </>
           ) : (
             <i>No Name</i>
           )}{" "}
-          <Favorite contact={contact} />
+          <Favorite contact={contacts} />
         </h1>
-        {contact.twitter && (
+        {contacts.twitter && (
           <p>
-            <a target="_blank" href={`htttps://twitter.com/${contact.twitter}`}>
-              {contact.twitter}
+            <a target="_blank" href={`htttps://twitter.com/${contacts.twitter}`}>
+              {contacts.twitter}
             </a>
           </p>
         )}
-        {contact.notes && <p>{contact.notes}</p>}
+        {contacts.notes && <p>{contacts.notes}</p>}
 
         <div>
           <Form action="edit">
