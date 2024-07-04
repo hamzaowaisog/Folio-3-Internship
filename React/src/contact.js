@@ -17,7 +17,7 @@ export async function getContacts(query){
 export async function createContact(){
     await fakenetwork();
     let id = Math.random().toString(36).substring(2,9);
-    let contact = {id, createdAt:Date.now()};
+    let contact = {id, createdAt: Date.now() };
     let contacts = await getContacts();
     contacts.unshift(contact);
     await set(contacts);
@@ -44,7 +44,6 @@ export async function updateContact(id, updates){
 }
 
 export async function deleteContact(id){
-
     let contacts = await localforage.getItem("contacts");
     let index = contacts.findIndex(contact => contact.id === id);
     if (index > -1){
