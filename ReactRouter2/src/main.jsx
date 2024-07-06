@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter , RouterProvider } from 'react-router-dom'
-import Tictactoe from './tictactoe.jsx'
+import Game from './tictactoe.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     children:
       [
         {path: "/tictactoe",
-        element: <Tictactoe/>
+        element: <Game/>
         },
     
       ],
