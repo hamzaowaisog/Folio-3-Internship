@@ -5,16 +5,22 @@ import "./tictac.css";
 export default function Game() {
     const [xIsNext, setXisNext] = useState(true);
     const [history, setHistory] = useState([Array(9).fill(null)]);
-    console.log("history", history);
-    const currentSquares = history[history.length - 1];
+    const [currentMove , setCurrentMove] = useState(0);
+    // console.log("history", history);
+    const currentSquares = history[currentMove];
     // console.log(currentSquares);
   
     function handlePlay(nextSquares) {
-      setHistory([...history, nextSquares]);
-      setXisNext(!xIsNext);
+        const nextHistory = [...history.slice(0,currentMove+1), nextSquares];
+        setHistory(nextHistory);
+        setCurrentMove(nextHistory.length-1);
+        setXisNext(!xIsNext);
     }
   
-    function jumpTo(nextMove) {}
+    function jumpTo(nextMove) {
+        setCurrentMove(nextMove);
+        setXisNext(nextMove % 2 === 0);
+    }
   
     const moves = history.map((squares, move) => {
       let description;
@@ -24,7 +30,7 @@ export default function Game() {
         description = "Go to game start";
       }
       return (
-        <li>
+        <li key={move}>
           <button onClick={() => jumpTo(move)}>{description}</button>
         </li>
       );
@@ -48,7 +54,7 @@ export default function Game() {
   }
   
 
-function Tictactoe(xIsNext, squares, onPlay) {
+function Tictactoe({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     console.log("Square", squares);
 
@@ -57,6 +63,7 @@ function Tictactoe(xIsNext, squares, onPlay) {
     }
 
     const nextSquares = squares.slice();
+
     if (xIsNext) {
       nextSquares[i] = "X";
     } else {
