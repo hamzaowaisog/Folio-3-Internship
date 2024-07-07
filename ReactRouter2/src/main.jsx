@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter , RouterProvider } from 'react-router-dom'
 import Game from './tictactoe.jsx'
+import Snake from './snake.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
         {path: "/tictactoe",
         element: <Game/>
         },
+        {
+          path:"/snakegame",
+          element: <Snake/>,
+        }
     
       ],
   }

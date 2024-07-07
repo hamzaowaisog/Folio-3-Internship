@@ -6,6 +6,9 @@ export default function App() {
   const handleclick = () =>{
     navigate ( '/tictactoe');
   }
+  const handleclick2 = () =>{
+    navigate ('/snakegame')
+  }
   return (
     <>
     <div id='sidebar'>
@@ -14,7 +17,7 @@ export default function App() {
         <button id='button' onClick={handleclick}>Tic Tac Toe</button>
       </div>
       <div>
-      <button id='button'>Counter</button>
+      <button id='button' onClick={handleclick2}>Snake Game</button>
       </div>
     </div>
     <div id='detail'>
