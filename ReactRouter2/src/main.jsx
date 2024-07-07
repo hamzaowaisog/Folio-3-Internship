@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter , RouterProvider } from 'react-router-dom'
 import Game from './tictactoe.jsx'
-import Snake from './snake.jsx'
+import Snake from './snake.js'
 const router = createBrowserRouter([
   {
     path: "/",
