@@ -22,15 +22,24 @@ export default function Snake() {
   const [isPlaying, setPlaying] = useState(0);
 
   useEffect(() => {
-    window.addEventListener("keydown" , (e) => handleDirectionChange(e.key));
-  },[]);
+    window.addEventListener("keydown", (e) => handleDirectionChange(e.key));
+  }, []);
 
   useEffect(() => {
     const snake_positions = [];
-    for (let i =0 ; i<DEFAULT_LENGTH ; i++){
-        snake_positions.push({row: 0 , col:i, isHead:false,});
+    for (let i = 0; i < DEFAULT_LENGTH; i++) {
+      snake_positions.push({ row: 0, col: i, isHead: false });
     }
-  })
+    snake_positions[DEFAULT_LENGTH - 1].isHead = true;
+    snakeCordinates.current = snake_positions;
+
+    syncSnakeCordinateMap();
+    populateFoodBall();
+  }, []);
+
+  const handleDirectionChange = (key) => {
+    direction.current = getNewDirection(key);
+  };
 
   const moveSnake = () => {
     if (gameOver) return;
