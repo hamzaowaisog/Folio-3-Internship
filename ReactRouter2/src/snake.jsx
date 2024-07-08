@@ -4,7 +4,7 @@ import "./snake.css";
 const COLs = 48;
 const ROWs = 48;
 
-const DEFAULT_LENGTH = 10;
+const DEFAULT_LENGTH = 1;
 const UP = Symbol("up");
 const DOWN = Symbol("down");
 const LEFT = Symbol("left");
@@ -12,17 +12,20 @@ const RIGHT = Symbol("right");
 
 export default function Snake() {
   const timer = useRef(null);
-  const grid = useRef(Array(ROWs).fill(Array(COLs).fill("")));
-  const snakeCordinates = useRef([]);
   const direction = useRef(RIGHT);
+  const [snakeCordinates, setSnakeCordinates] = useState([]);
   const snakeCordinatesMap = useRef(new Set());
-  const foodCords = useRef({ row: -1, cols: -1 });
+  const foodCords = useRef({ row: -1, col: -1 });
   const [points, setPoints] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const [isPlaying, setPlaying] = useState(0);
+  const [isPlaying, setPlaying] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("keydown", (e) => handleDirectionChange(e.key));
+    const handlekeyDown = (e) => handleDirectionChange(e.key);
+    window.addEventListener("keydown", handlekeyDown);
+    return () => {
+      window.removeEventListener("keydown", handlekeyDown);
+    };
   }, []);
 
   useEffect(() => {
@@ -31,7 +34,7 @@ export default function Snake() {
       snake_positions.push({ row: 0, col: i, isHead: false });
     }
     snake_positions[DEFAULT_LENGTH - 1].isHead = true;
-    snakeCordinates.current = snake_positions;
+    setSnakeCordinates(snake_positions);
 
     syncSnakeCordinateMap();
     populateFoodBall();
@@ -58,7 +61,7 @@ export default function Snake() {
 
   const syncSnakeCordinateMap = () => {
     const snakeCordsSet = new Set(
-      snakeCordinates.current.map((cords) => `${cords.row}: ${cords.col}`)
+      snakeCordinates.map((cords) => `${cords.row}:${cords.col}`)
     );
     snakeCordinatesMap.current = snakeCordsSet;
   };
@@ -66,9 +69,9 @@ export default function Snake() {
   const moveSnake = () => {
     if (gameOver) return;
 
-    setPlaying((s) => s + 1);
+    setPlaying(true);
 
-    const cords = snakeCordinates.current;
+    const cords = [...snakeCordinates];
     const snakeTail = cords[0];
     const snakeHead = cords.pop();
     const curr_direction = direction.current;
@@ -112,7 +115,7 @@ export default function Snake() {
     }
 
     cords.push(snakeHead);
-    snakeCordinates.current = foodConsumed ? [snakeTail, ...cords] : cords;
+    setSnakeCordinates(foodConsumed ? [snakeTail, ...cords] : cords);
     syncSnakeCordinateMap();
   };
 
@@ -136,7 +139,7 @@ export default function Snake() {
       return true;
     }
 
-    const cordKey = `${snakeHead.row}: ${snakeHead.col}`;
+    const cordKey = `${snakeHead.row}:${snakeHead.col}`;
 
     if (snakeCordinatesMap.current.has(cordKey)) {
       return true;
@@ -160,28 +163,30 @@ export default function Snake() {
 
   const getCell = useCallback(
     (row_idx, col_idx) => {
-      const cords = `${row_idx} : ${col_idx}`;
-      const foodPos = `${foodCords.current.row} : ${foodCords.current.col}`;
-      const head = snakeCordinates.current[snakeCordinates.current.length - 1];
-      const headPos = `${head?.row} : ${head?.col}`;
+      const cords = `${row_idx}:${col_idx}`;
+      const foodPos = `${foodCords.current.row}:${foodCords.current.col}`;
+      const head = snakeCordinates[snakeCordinates.length - 1];
+      const headPos = `${head?.row}:${head?.col}`;
       const isFood = cords === foodPos;
       const isHead = headPos === cords;
       const isSnakeBody = snakeCordinatesMap.current.has(cords);
 
+      console.log(`Cell (${row_idx}, ${col_idx}):`, { isFood, isHead, isSnakeBody });
+
       let className = "cell";
       if (isFood) {
-        className += "food";
+        className += " food";
       }
       if (isSnakeBody) {
-        className += "body";
+        className += " body";
       }
       if (isHead) {
-        className += "head";
+        className += " head";
       }
 
       return <div key={col_idx} className={className}></div>;
     },
-    [isPlaying]
+    [foodCords.current, snakeCordinates, snakeCordinatesMap.current]
   );
 
   return (
@@ -199,13 +204,27 @@ export default function Snake() {
             </button>
           )}
           <div className="board">
-            {grid.current?.map((row, row_idx) => (
+            {Array.from({ length: ROWs }, (_, row_idx) => (
               <div key={row_idx} className="row">
-                {row.map((_, col_idx) => getCell(row_idx, col_idx))}
+                {Array.from({ length: COLs }, (_, col_idx) => getCell(row_idx, col_idx))}
               </div>
             ))}
           </div>
           <p className="score">SCORE {points}</p>
+          <div className="keys-container">
+            <button onClick={() => handleDirectionChange("ArrowUp")}>UP</button>
+            <div className="key-row">
+              <button onClick={() => handleDirectionChange("ArrowLeft")}>
+                LEFT
+              </button>
+              <button onClick={() => handleDirectionChange("ArrowRight")}>
+                RIGHT
+              </button>
+            </div>
+            <button onClick={() => handleDirectionChange("ArrowDown")}>
+              DOWN
+            </button>
+          </div>
         </div>
       </div>
     </>

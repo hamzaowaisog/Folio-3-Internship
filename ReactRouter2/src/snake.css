@@ -1,3 +1,6 @@
+:root{
+    overflow-x: hidden;
+}
 #design {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -9,18 +12,19 @@
   
     font-synthesis: none;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
-  body {
+  /* body {
     margin: 0;
     display: flex;
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
     font-weight: bold;
-  }
+  } */
   
   .app-container {
     width: 100vw;
@@ -57,7 +61,7 @@
   
   .food {
     background-color: #00e244;
-    z-index: 10;
+
     border-color: #00e244;
     border-radius: 50%;
     box-shadow: 0px 0px 2px 2px #00e244;
@@ -97,13 +101,13 @@
     letter-spacing: 8px;
   }
   
-  .keys-container button {
+  /* .keys-container button {
     background-color: #4f4f4f;
     width: 100px;
-  }
+  } */
   
   .keys-container {
-    visibility: hidden;
+    visibility:visible;
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -123,10 +127,10 @@
     }
   }
   
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .cell {
-      width: 4px;
-      height: 4px;
+      width: 2px;
+      height: 2px;
     }
   
     .keys-container {
