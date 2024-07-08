@@ -97,5 +97,6 @@ export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
+  console.log('asd',contacts, q)
   return { contacts, q };
 }
