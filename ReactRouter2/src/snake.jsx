@@ -30,7 +30,7 @@ export default function Snake() {
 
   useEffect(() => {
     const snake_positions = [];
-    for (let i = 0; i <= DEFAULT_LENGTH; i++) {
+    for (let i = 0; i < DEFAULT_LENGTH; i++) {
       snake_positions.push({ row: 0, col: i, isHead: false });
     }
     snake_positions[DEFAULT_LENGTH-1].isHead = true;
