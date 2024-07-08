@@ -1,4 +1,4 @@
-:root {
+#design {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
@@ -70,7 +70,7 @@
     border-color: #3842ff;
   }
   
-  button {
+ .button {
     font-weight: bold;
     background-color: #ebc800;
     border: none;
