@@ -74,6 +74,33 @@ export default function Snake() {
     syncSnakeCordinateMap();
   };
 
+  const populateFoodBall = async () => {
+    const row = Math.floor(Math.random() * ROWs);
+    const col = Math.floor(Math.random() * COLs);
+
+    foodCords.current = {
+      row,
+      col,
+    };
+  };
+
+  const collisionCheck = (snakeHead) => {
+    if (
+      snakeHead.col >= COLs ||
+      snakeHead.row >= ROWs ||
+      snakeHead.col < 0 ||
+      snakeHead.row < 0
+    ) {
+      return true;
+    }
+
+    const cordKey = `${snakeHead.row}: ${snakeHead.col}`;
+
+    if (snakeCordinatesMap.current.has(cordKey)) {
+      return true;
+    }
+  };
+
   return (
     <>
       <div id="design">
