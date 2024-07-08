@@ -1,16 +1,16 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./snake.css";
 
+const COLs = 48;
+const ROWs = 48;
+
+const DEFAULT_LENGTH = 10;
+const up = Symbol("up");
+const down = Symbol("down");
+const left = Symbol("left");
+const right = Symbol("right");
+
 export default function Snake() {
-  const COLs = 48;
-  const ROWs = 48;
-
-  const DEFAULT_LENGTH = 10;
-  const up = Symbol("up");
-  const down = Symbol("down");
-  const left = Symbol("left");
-  const right = Symbol("right");
-
   const timer = useRef(null);
   const grid = useRef(Array(ROWs).fill(Array(COLs).fill("")));
   const snakeCordinates = useRef([]);
@@ -20,6 +20,17 @@ export default function Snake() {
   const [points, setPoints] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [isPlaying, setPlaying] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener("keydown" , (e) => handleDirectionChange(e.key));
+  },[]);
+
+  useEffect(() => {
+    const snake_positions = [];
+    for (let i =0 ; i<DEFAULT_LENGTH ; i++){
+        snake_positions.push({row: 0 , col:i, isHead:false,});
+    }
+  })
 
   const moveSnake = () => {
     if (gameOver) return;
@@ -116,27 +127,31 @@ export default function Snake() {
     }
   };
 
-  const getCell = useCallback( (row_idx , col_idx) => {
-    const cords = `${row_idx} : ${col_idx}`;
-    const foodPos = `${foodCords.current.row} : ${foodCords.current.col}`;
-    const head = snakeCordinates.current[snakeCordinates.current.length-1];
-    const headPos = `${head?.row} : ${head?.col}`;
-    const isFood = cords === foodPos;
-    const isHead = headPos === cords;
+  const getCell = useCallback(
+    (row_idx, col_idx) => {
+      const cords = `${row_idx} : ${col_idx}`;
+      const foodPos = `${foodCords.current.row} : ${foodCords.current.col}`;
+      const head = snakeCordinates.current[snakeCordinates.current.length - 1];
+      const headPos = `${head?.row} : ${head?.col}`;
+      const isFood = cords === foodPos;
+      const isHead = headPos === cords;
+      const isSnakeBody = snakeCordinatesMap.current.has(cords);
 
-    let className = "cell";
-    if(isFood){
+      let className = "cell";
+      if (isFood) {
         className += "food";
-    }
-    if(isSnakeBody){
+      }
+      if (isSnakeBody) {
         className += "body";
-    }
-    if(isHead){
+      }
+      if (isHead) {
         className += "head";
-    }
+      }
 
-    return <div key={col_idx} className={className}></div>
-  }, [isPlaying]);
+      return <div key={col_idx} className={className}></div>;
+    },
+    [isPlaying]
+  );
 
   return (
     <>
