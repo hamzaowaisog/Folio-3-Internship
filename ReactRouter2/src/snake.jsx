@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import "./snake.css";
 
 export default function Snake() {
@@ -115,6 +115,28 @@ export default function Snake() {
       clearInterval(timer.current);
     }
   };
+
+  const getCell = useCallback( (row_idx , col_idx) => {
+    const cords = `${row_idx} : ${col_idx}`;
+    const foodPos = `${foodCords.current.row} : ${foodCords.current.col}`;
+    const head = snakeCordinates.current[snakeCordinates.current.length-1];
+    const headPos = `${head?.row} : ${head?.col}`;
+    const isFood = cords === foodPos;
+    const isHead = headPos === cords;
+
+    let className = "cell";
+    if(isFood){
+        className += "food";
+    }
+    if(isSnakeBody){
+        className += "body";
+    }
+    if(isHead){
+        className += "head";
+    }
+
+    return <div key={col_idx} className={className}></div>
+  }, [isPlaying]);
 
   return (
     <>
