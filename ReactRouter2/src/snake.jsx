@@ -5,16 +5,16 @@ const COLs = 48;
 const ROWs = 48;
 
 const DEFAULT_LENGTH = 10;
-const up = Symbol("up");
-const down = Symbol("down");
-const left = Symbol("left");
-const right = Symbol("right");
+const UP = Symbol("up");
+const DOWN = Symbol("down");
+const LEFT = Symbol("left");
+const RIGHT = Symbol("right");
 
 export default function Snake() {
   const timer = useRef(null);
   const grid = useRef(Array(ROWs).fill(Array(COLs).fill("")));
   const snakeCordinates = useRef([]);
-  const direction = useRef(right);
+  const direction = useRef(RIGHT);
   const snakeCordinatesMap = useRef(new Set());
   const foodCords = useRef({ row: -1, cols: -1 });
   const [points, setPoints] = useState(0);
@@ -39,6 +39,28 @@ export default function Snake() {
 
   const handleDirectionChange = (key) => {
     direction.current = getNewDirection(key);
+  };
+
+  const getNewDirection = (key) => {
+    switch (key) {
+      case "ArrowUp":
+        return UP;
+      case "ArrowDown":
+        return DOWN;
+      case "ArrowLeft":
+        return LEFT;
+      case "ArrowRight":
+        return RIGHT;
+      default:
+        return direction.current;
+    }
+  };
+
+  const syncSnakeCordinateMap = () => {
+    const snakeCordsSet = new Set(
+      snakeCordinates.current.map((cords) => `${cords.row}: ${cords.col}`)
+    );
+    snakeCordinatesMap.current = snakeCordsSet;
   };
 
   const moveSnake = () => {
