@@ -1,8 +1,15 @@
 import { Layout, Menu } from "antd";
 import "./header.css";
+import { useState, useEffect } from "react";
 const { Header, Content } = Layout;
 
 export default function HeaderReact() {
+
+  const menuItems = [
+    { key: "1", label: "Login" },
+    { key: "2", label: "Cart 0" }
+  ];
+
   return (
     <>
       <Layout>
@@ -21,19 +28,16 @@ export default function HeaderReact() {
             <img
               src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/pizza_1f355.png"
               alt=""
-            ></img>
+            />
           </div>
-          <div>
-            <Menu
-              mode="horizontal"
-              style={{ fontSize: "18px" }}
-              defaultSelectedKeys={["0"]}
-            >
-              <Menu.Item key="1">Login</Menu.Item>
-              <Menu.Item key="2">Cart 0</Menu.Item>
-            </Menu>
-          </div>
+          <div style={{  flex:1 , alignItems: "right" }}>
+
+            <Menu mode="horizontal" style={{justifyContent: "right" }} items={menuItems} />
+            </div>
         </Header>
+        <Content>
+            
+        </Content>
       </Layout>
     </>
   );
