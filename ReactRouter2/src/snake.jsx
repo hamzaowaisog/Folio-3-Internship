@@ -17,36 +17,62 @@ export default function Snake() {
   const direction = useRef(right);
   const snakeCordinatesMap = useRef(new Set());
   const foodCords = useRef({ row: -1, cols: -1 });
-  const [points, setPoinrs] = useState(0);
+  const [points, setPoints] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [isPlaying, setPlaying] = useState(0);
 
-  const moveSnake = () =>{
+  const moveSnake = () => {
     if (gameOver) return;
 
-    setPlaying((s) => s+1);
+    setPlaying((s) => s + 1);
 
     const cords = snakeCordinates.current;
     const snakeTail = cords[0];
     const snakeHead = cords.pop();
     const curr_direction = direction.current;
 
-    const foodConsumed = snakeHead.row === foodCords.current.row && snakeHead.col === foodCords.current.col;
+    const foodConsumed =
+      snakeHead.row === foodCords.current.row &&
+      snakeHead.col === foodCords.current.col;
 
     cords.forEach((_, idx) => {
-        if(idx === cords.length-1){
-            cords[idx] = {...snakeHead};
-            cords[idx].isHead = false;
-            return;
-        }
-        cords[idx] = cords[idx+1];
-
+      if (idx === cords.length - 1) {
+        cords[idx] = { ...snakeHead };
+        cords[idx].isHead = false;
+        return;
+      }
+      cords[idx] = cords[idx + 1];
     });
+    switch (curr_direction) {
+      case UP:
+        snakeHead.row -= 1;
+        break;
+      case DOWN:
+        snakeHead.row += 1;
+        break;
+      case LEFT:
+        snakeHead.col -= 1;
+        break;
+      case RIGHT:
+        snakeHead.col += 1;
+        break;
+    }
 
-    
+    if (foodConsumed) {
+      setPoints((points) => points + 10);
+      populateFoodBall();
+    }
 
+    const collided = collisionCheck(snakeHead);
+    if (collided) {
+      stopGame();
+      return;
+    }
 
-  }
+    cords.push(snakeHead);
+    snakeCordinates.current = foodConsumed ? [snakeTail, ...cords] : cords;
+    syncSnakeCordinateMap();
+  };
 
   return (
     <>
@@ -55,15 +81,18 @@ export default function Snake() {
           {gameOver ? (
             <p className="game-over">GAME OVER</p>
           ) : (
-            <button className="button" onClick={isPlaying ? stopGame : startGame}>
+            <button
+              className="button"
+              onClick={isPlaying ? stopGame : startGame}
+            >
               {isPlaying ? "STOP" : "START"} GAME
             </button>
           )}
           <div className="board">
-            {grid.current?.map((row,row_idx) => (
-                <div key={row_idx} className="row">
-                    {row.map((_, col_idx) => getCell(row_idx, col_idx))}
-                </div>
+            {grid.current?.map((row, row_idx) => (
+              <div key={row_idx} className="row">
+                {row.map((_, col_idx) => getCell(row_idx, col_idx))}
+              </div>
             ))}
           </div>
           <p className="score">SCORE {points}</p>
