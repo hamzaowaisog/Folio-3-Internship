@@ -100,6 +100,21 @@ export default function Snake() {
       return true;
     }
   };
+  const startGame = async () => {
+    const interval = setInterval(() => {
+      moveSnake();
+    }, 100);
+
+    timer.current = interval;
+  };
+
+  const stopGame = async () => {
+    setGameOver(true);
+    setPlaying(false);
+    if (timer.current) {
+      clearInterval(timer.current);
+    }
+  };
 
   return (
     <>
