@@ -29,3 +29,58 @@ code {
   max-width: 100%;
   height: auto;
 }
+.inside {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+.rightMenu{
+    flex: 1;
+    font-size: 20px;
+}
+.Mainmenu{
+    justify-content: right;
+}
+.menuButton {
+    height: 32px;
+    padding:6px;
+    display:none;
+    background: none;
+    margin-top: 15px;
+}
+@media (max-width: 767px) {
+    .menuButton {
+      display: block;
+      margin-right: 10px;
+    }
+  
+    .leftMenu,
+    .rightMenu {
+      display: none;
+    }
+}
+@media (max-width: 440px){
+    .menuButton{
+        margin-right: 0px;
+        padding-right: 0px;
+    }
+    .inside{
+        font-size: 20px;
+    }
+}
+@media (max-width: 300px){
+    .menuButton{
+        margin-right: 0px;
+        padding-right: 0px;
+    }
+    .inside{
+        margin-left: 0px;
+        font-size: 15px;
+    }
+    img{
+        margin-top: 3px;
+        height: 25px;
+        max-width: 100%;
+        margin-left: 10px;
+    }
+}

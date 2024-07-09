@@ -1,9 +1,10 @@
 import HeaderReact from "./header"
+import HeaderClass from "./headerClass"
 
 function App() {
   return(
-  <HeaderReact/>
-  )
+    <HeaderClass />
+  );
 }
 
 export default App
