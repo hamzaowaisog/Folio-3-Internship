@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import HeaderReact from "./header";
+import HeaderClass from "./headerClass";
 const { Header, Content } = Layout;
 import PizzaContent from "./Content";
 
@@ -12,7 +12,7 @@ export default function MainComponent(){
             justifyContent: "space-between",
             boxShadow: "0px 1px 30px rgba(0,0,0,0.75)",
           }}>
-                <HeaderReact/>
+                <HeaderClass/>
             </Header>
             <Content style={{ padding: "0 50px", marginTop: "20px" }}>
                 <PizzaContent/>

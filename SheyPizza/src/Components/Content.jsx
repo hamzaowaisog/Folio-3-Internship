@@ -1,5 +1,5 @@
 import { Card, Select, InputNumber, Button, Row, Col, Modal } from "antd";
-import "./content.css";
+import "../CSS/content.css";
 import Pizza from "../Data/PizzaData";
 import useModal from "../Functionality/ModalFunction";
 
