@@ -1,5 +1,5 @@
-import HeaderReact from "./header"
-import HeaderClass from "./headerClass"
+import HeaderReact from "./Components/header"
+import HeaderClass from "./Components/headerClass"
 
 function App() {
   return(
