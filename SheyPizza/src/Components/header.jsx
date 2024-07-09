@@ -1,26 +1,11 @@
-import { Layout, Menu } from "antd";
+import { Menu } from "antd";
 import "./header.css";
-import { useState, useEffect } from "react";
-const { Header, Content } = Layout;
-import PizzaContent from "./Content";
+import  menuItems  from "../Data/MenuData";
 
 export default function HeaderReact() {
-  const menuItems = [
-    { key: "1", label: "Login" },
-    { key: "2", label: "Cart 0" },
-  ];
-
+  
   return (
     <>
-      <Layout>
-        <Header
-          style={{
-            backgroundColor: "#fff",
-            display: "flex",
-            justifyContent: "space-between",
-            boxShadow: "0px 1px 30px rgba(0,0,0,0.75)",
-          }}
-        >
           <div
             style={{ display: "flex", alignItems: "center", fontSize: "24px" }}
           >
@@ -37,11 +22,6 @@ export default function HeaderReact() {
               items={menuItems}
             />
           </div>
-        </Header>
-        <Content style={{ padding: "0 50px", marginTop: "20px" }}>
-          <PizzaContent />
-        </Content>
-      </Layout>
     </>
   );
 }

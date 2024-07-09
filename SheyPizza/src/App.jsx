@@ -1,8 +1,8 @@
-import HeaderClass from "./Components/headerClass"
+import MainComponent from "./Components/MainComponent";
 
 function App() {
   return(
-    <HeaderClass />
+    <MainComponent />
   );
 }
 
