@@ -12,7 +12,6 @@
   height: auto;
 }
 .card-img {
-  max-width: 200px;
   display: flex;
   margin: auto;
   height: fit-content;
@@ -39,4 +38,7 @@ p{
   margin-left: 50px;
   margin-bottom: 10px;
   border: solid 1px
+}
+.Cart-Button {
+  width: 100%;
 }

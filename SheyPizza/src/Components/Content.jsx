@@ -49,7 +49,7 @@ export default function PizzaContent() {
                 />
               </p>
               <p>Price:{pizza.price} Rs</p>
-              <Button type="primary" danger onClick={handleChildClick}>
+              <Button className="Cart-Button" type="primary" danger onClick={handleChildClick}>
                 ADD TO CART
               </Button>
             </Card>
