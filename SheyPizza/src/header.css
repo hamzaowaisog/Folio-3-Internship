@@ -21,14 +21,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.ant-card {
-  text-align: center;
-}
 
-.ant-card-cover img {
-  max-width: 100%;
-  height: auto;
-}
 .inside {
     display: flex;
     align-items: center;

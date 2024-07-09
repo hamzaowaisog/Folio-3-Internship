@@ -1,0 +1,17 @@
+.ant-card {
+    text-align: center;
+  }
+  
+  .ant-card-cover img {
+    max-width: 200px;
+    object-fit: cover;
+    margin: auto;
+    height: auto;
+  }
+  .card-img{
+    max-width: 200px;
+    display: flex;
+    margin: auto;
+    height: fit-content;
+
+  }
