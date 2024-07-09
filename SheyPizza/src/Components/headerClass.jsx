@@ -24,7 +24,7 @@ export default class HeaderClass extends Component {
       <>
        
             <div className="inside">
-              <Link to={"/"} style={{ color: "black" }}>
+              <Link to={"/"} className="link">
                 SHEY PIZZA
               </Link>
               <img

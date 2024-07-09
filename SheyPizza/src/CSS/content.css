@@ -1,19 +1,42 @@
 .ant-card {
-    text-align: center;
-    box-shadow: 0px 0px 10px 0px ;
-    border: 0;
-  }
-  
-  .ant-card-cover img {
-    max-width: 200px;
-    object-fit: cover;
-    margin: auto;
-    height: auto;
-  }
-  .card-img{
-    max-width: 200px;
-    display: flex;
-    margin: auto;
-    height: fit-content;
+  text-align: center;
+  box-shadow: 0px 0px 10px 0px;
+  border: 0;
+  margin-left: 20px;
+}
 
-  }
+.ant-card-cover img {
+  max-width: 200px;
+  object-fit: cover;
+  margin: auto;
+  height: auto;
+}
+.card-img {
+  max-width: 200px;
+  display: flex;
+  margin: auto;
+  height: fit-content;
+}
+.row-style {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.Select{
+  width: 50%;
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  border: solid 1px;
+}
+p{
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.InputNumber{
+  width: 50%;
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  border: solid 1px
+}

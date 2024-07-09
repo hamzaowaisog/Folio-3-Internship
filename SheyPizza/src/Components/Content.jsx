@@ -17,8 +17,7 @@ export default function PizzaContent() {
   return (
     <>
       <Row
-        gutter={[16, 32]}
-        style={{ marginTop: "20px", marginBottom: "20px" }}
+        gutter={[16, 32]} className="row-style"
       >
         {Pizza.map((pizza, index) => (
           <Col key={index} md={8} sm={24} xs={24}>
@@ -27,13 +26,11 @@ export default function PizzaContent() {
               hoverable
               onClick={() => handleCardClick(pizza)}
               cover={<img src={pizza.img}></img>}
-              style={{ marginLeft: "20px" }}
             >
               <p>
                 Variants:
-                <Select
+                <Select className="Select"
                   defaultValue={"Small"}
-                  style={{ width: "120px" }}
                   onClick={handleChildClick}
                 >
                   <Select.Option value="small">Small</Select.Option>
@@ -48,6 +45,7 @@ export default function PizzaContent() {
                   max={10}
                   defaultValue={1}
                   onClick={handleChildClick}
+                  className="InputNumber"
                 />
               </p>
               <p>Price:{pizza.price} Rs</p>
