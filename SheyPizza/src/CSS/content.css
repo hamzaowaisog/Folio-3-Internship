@@ -21,7 +21,7 @@
   margin-bottom: 20px;
 }
 .Select{
-  width: 50%;
+  width: 39%;
   margin-top: 10px;
   margin-left: 50px;
   margin-bottom: 10px;
@@ -32,13 +32,7 @@ p{
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.InputNumber{
-  width: 50%;
-  margin-top: 10px;
-  margin-left: 50px;
-  margin-bottom: 10px;
-  border: solid 1px
-}
+
 .Cart-Button {
   width: 100%;
 }

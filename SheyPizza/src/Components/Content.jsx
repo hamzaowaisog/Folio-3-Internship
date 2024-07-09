@@ -2,6 +2,8 @@ import { Card, Select, InputNumber, Button, Row, Col, Modal } from "antd";
 import "../CSS/content.css";
 import Pizza from "../Data/PizzaData";
 import useModal from "../Functionality/ModalFunction";
+import CardFunctionality from "../Functionality/CardFunctionality";
+
 
 export default function PizzaContent() {
   const {
@@ -14,28 +16,42 @@ export default function PizzaContent() {
     handleChildClick,
   } = useModal();
 
+  const {
+    pizzaStates,
+    handleVariantChange,
+    handleQuantityChange,
+    calculatePrice
+  } = CardFunctionality();
+
+  
+
   return (
     <>
-      <Row
-        gutter={[16, 32]} className="row-style"
-      >
+      <Row gutter={[16, 32]} className="row-style">
         {Pizza.map((pizza, index) => (
           <Col key={index} md={8} sm={24} xs={24}>
             <Card
               title={pizza.name}
               hoverable
-              onClick={() => handleCardClick(pizza)}
-              cover={<img src={pizza.img}></img>}
+              onClick={() => 
+                handleCardClick(pizza)
+              }
+              cover={<img src={pizza.img} alt={pizza.name}></img>}
             >
               <p>
                 Variants:
-                <Select className="Select"
-                  defaultValue={"Small"}
-                  onClick={handleChildClick} name="variant"
+                <Select
+                  className="Select"
+                  defaultValue={pizzaStates[index].variant}
+                  onClick={handleChildClick}
+                  onChange={(value) => handleVariantChange(index,value)}
+                  name="variant"
                 >
-                  <Select.Option value="small">Small</Select.Option>
-                  <Select.Option value="Medium">Medium</Select.Option>
-                  <Select.Option value="Large">Large</Select.Option>
+                  {pizza.variant?.map((variant) => (
+                    <Select.Option key={variant.name} value={variant.name}>
+                      {variant.name}
+                    </Select.Option>
+                  ))}
                 </Select>
               </p>
               <p>
@@ -45,11 +61,17 @@ export default function PizzaContent() {
                   max={10}
                   defaultValue={1}
                   onClick={handleChildClick}
-                  className="InputNumber"
+                  onChange={(value) => handleQuantityChange(index,value)}
+                  className="Select"
                 />
               </p>
-              <p>Price:{pizza.price} Rs</p>
-              <Button className="Cart-Button" type="primary" danger onClick={handleChildClick}>
+              <p>Price:{calculatePrice(index)} Rs</p>
+              <Button
+                className="Cart-Button"
+                type="primary"
+                danger
+                onClick={handleChildClick}
+              >
                 ADD TO CART
               </Button>
             </Card>
