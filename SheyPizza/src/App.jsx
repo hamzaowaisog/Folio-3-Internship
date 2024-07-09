@@ -1,4 +1,3 @@
-import HeaderReact from "./Components/header"
 import HeaderClass from "./Components/headerClass"
 
 function App() {
