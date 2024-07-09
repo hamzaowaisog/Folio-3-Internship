@@ -31,7 +31,7 @@ export default function PizzaContent() {
                 Variants:
                 <Select className="Select"
                   defaultValue={"Small"}
-                  onClick={handleChildClick}
+                  onClick={handleChildClick} name="variant"
                 >
                   <Select.Option value="small">Small</Select.Option>
                   <Select.Option value="Medium">Medium</Select.Option>
