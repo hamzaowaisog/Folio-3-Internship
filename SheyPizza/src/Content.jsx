@@ -1,7 +1,7 @@
 import { Card, Select, InputNumber, Button, Row, Col, Modal } from "antd";
 import "./content.css";
-import { Pizza } from "./PizzaData";
-import { useModal } from "./ModalFunction";
+import Pizza from "./Data/PizzaData";
+import useModal from "./Functionality/ModalFunction";
 
 export default function PizzaContent() {
   const {
