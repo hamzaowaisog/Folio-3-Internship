@@ -1,28 +1,27 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-const CartFunction = () => {
+export default function CartFunction() {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (pizza, variant, quantity, price) => {
-    setCart((prevCart) => {
-      const existingItemIndex = prevCart.findIndex(
-        (item) => item.pizza.name === pizza.name && item.variant === variant
-      );
-      if (existingItemIndex !== -1) {
-        return prevCart.map((item, index) =>
-          index === existingItemIndex
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
-      }
-      return [...prevCart, { pizza, variant, quantity, price }];
-    });
+  console.log(cart);
+  console.log(cart.length);
+
+  const addToCart = (pizza, variant, quantity) => {
+    const existingItemIndex = cart.findIndex(
+      (item) => item.pizza.name === pizza.name && item.variant === variant
+    );
+
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].quantity += quantity;
+      setCart(updatedCart);
+    } else {
+      setCart([...cart, { pizza, variant, quantity }]);
+    }
   };
 
   return {
     cart,
     addToCart,
   };
-};
-
-export default CartFunction;
+}

@@ -3,6 +3,7 @@ import "../CSS/content.css";
 import Pizza from "../Data/PizzaData";
 import useModal from "../Functionality/ModalFunction";
 import CardFunctionality from "../Functionality/CardFunctionality";
+import CartFunction from "../Functionality/Cart";
 
 
 export default function PizzaContent() {
@@ -22,6 +23,10 @@ export default function PizzaContent() {
     handleQuantityChange,
     calculatePrice
   } = CardFunctionality();
+
+  const {
+    addToCart
+  } = CartFunction()
 
   
 
@@ -70,7 +75,7 @@ export default function PizzaContent() {
                 className="Cart-Button"
                 type="primary"
                 danger
-                onClick={(event)=> {handleChildClick(event)}}
+                onClick={(event)=> { addToCart(pizza , pizzaStates[index].variant , pizzaStates[index].quantity);handleChildClick(event)}}
               >
                 ADD TO CART
               </Button>
