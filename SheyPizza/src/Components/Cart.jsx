@@ -1,17 +1,17 @@
 import { Layout } from "antd";
+import HeaderClass from "./headerClass";
 const { Header, Content } = Layout;
 import "../CSS/MainComponent.css";
-import LoginForm from "./LoginForm";
-import HeaderFunctional from "./header";
+import CartDisplay from "./CartDisplay";
 
-export default function Login() {
+export default function Cart() {
   return (
     <Layout>
       <Header className="header">
-        <HeaderFunctional/>
+        <HeaderClass />
       </Header>
       <Content className="content">
-        <LoginForm/>
+        <CartDisplay/>
       </Content>
     </Layout>
   );
