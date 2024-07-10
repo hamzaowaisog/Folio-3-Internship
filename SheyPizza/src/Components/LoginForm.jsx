@@ -15,7 +15,7 @@ export default function LoginForm() {
     <div className="box">
       <h1 className="heading">LOGIN</h1>
       <Form
-        name="basic"
+        name="login"
         labelCol={{
           xs: { span: 24 },
           sm: { span: 8 },
