@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const useModal = () => {
-  const[isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalDes, setModalDes] = useState("");
   const [modalImg, setModalImg] = useState("");
@@ -19,8 +19,10 @@ const useModal = () => {
   const handleCardClick = (pizza) => {
     showModal(pizza);
   };
-  const handleChildClick = (e) => {
-    e.stopPropagation();
+  const handleChildClick = (event) => {
+    if (event.stopPropagation && event) {
+      event.stopPropagation();
+    }
   };
 
   return {
@@ -30,9 +32,8 @@ const useModal = () => {
     modalImg,
     handleOk,
     handleCardClick,
-    handleChildClick
-
-  }
+    handleChildClick,
+  };
 };
 
 export default useModal;

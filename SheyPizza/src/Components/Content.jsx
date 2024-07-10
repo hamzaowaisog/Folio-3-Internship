@@ -43,8 +43,8 @@ export default function PizzaContent() {
                 <Select
                   className="Select"
                   defaultValue={pizzaStates[index].variant}
-                  onClick={handleChildClick}
-                  onChange={(value) => handleVariantChange(index,value)}
+                  onClick={(event)=>{handleChildClick(event)}}
+                  onChange={(value,event) => {handleChildClick(event);handleVariantChange(index,value)}}
                   name="variant"
                 >
                   {pizza.variant?.map((variant) => (
@@ -60,8 +60,8 @@ export default function PizzaContent() {
                   min={1}
                   max={10}
                   defaultValue={1}
-                  onClick={handleChildClick}
-                  onChange={(value) => handleQuantityChange(index,value)}
+                  onClick={(event) => {handleChildClick(event)}}
+                  onChange={(value) => {handleQuantityChange(index,value)}}
                   className="Select"
                 />
               </p>
@@ -70,7 +70,7 @@ export default function PizzaContent() {
                 className="Cart-Button"
                 type="primary"
                 danger
-                onClick={handleChildClick}
+                onClick={(event)=> {handleChildClick(event)}}
               >
                 ADD TO CART
               </Button>
