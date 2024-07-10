@@ -2,7 +2,7 @@ import {useCart} from "../Functionality/CartContext";
 export default function CartDisplay(){
    const {
     cart
-   } = useCart();
+   } = useCart()
     return(
         <div>
             <h1>Cart</h1>
