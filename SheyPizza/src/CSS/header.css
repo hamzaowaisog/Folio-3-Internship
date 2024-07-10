@@ -37,6 +37,7 @@ code {
 }
 .Mainmenu{
     justify-content: right;
+    font-size: 17px;
 }
 .menuButton {
     height: 32px;
