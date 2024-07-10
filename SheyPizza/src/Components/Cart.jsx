@@ -1,14 +1,14 @@
 import { Layout } from "antd";
-import HeaderClass from "./headerClass";
 const { Header, Content } = Layout;
 import "../CSS/MainComponent.css";
 import CartDisplay from "./CartDisplay";
+import HeaderFunctional from "./header";
 
 export default function Cart() {
   return (
     <Layout>
       <Header className="header">
-        <HeaderClass />
+        <HeaderFunctional />
       </Header>
       <Content className="content">
         <CartDisplay/>

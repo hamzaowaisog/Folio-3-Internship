@@ -2,15 +2,18 @@ import { useState } from "react";
 import { Button, Drawer, Menu } from "antd";
 import { Link } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
-import menuItems from "../Data/MenuData";
+import MenuFunction from "../Data/MenuData";
 import "../CSS/header.css";
-
 const HeaderFunctional = () => {
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
     setVisible(!visible);
   };
+
+  const {
+    menuItems
+  } = MenuFunction();
 
   return (
     <>
