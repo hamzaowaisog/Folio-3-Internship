@@ -108,7 +108,7 @@ export default function RegisterForm() {
               sm: { offset: 8, span: 16 },
             }}
           >
-            <Link className="Link" to="/register">
+            <Link className="Link" to="/login">
               Already Registered? Click Here to Login
             </Link>
           </Form.Item>
