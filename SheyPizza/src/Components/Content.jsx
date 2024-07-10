@@ -3,7 +3,7 @@ import "../CSS/content.css";
 import Pizza from "../Data/PizzaData";
 import useModal from "../Functionality/ModalFunction";
 import CardFunctionality from "../Functionality/CardFunctionality";
-import CartFunction from "../Functionality/Cart";
+import {useCart} from "../Functionality/CartContext";
 
 
 export default function PizzaContent() {
@@ -26,7 +26,7 @@ export default function PizzaContent() {
 
   const {
     addToCart
-  } = CartFunction()
+  } = useCart()
 
   
 

@@ -41,8 +41,7 @@ const HeaderFunctional = () => {
         onClose={showDrawer}
         open={visible}
       >
-      <Menu className="Mainmenu" mode={"vertical"} items={menuItems} />
-                      
+      <Menu className="Mainmenu" mode={"vertical"} items={menuItems} /> 
       </Drawer>
     </>
   );
