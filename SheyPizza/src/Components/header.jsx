@@ -2,12 +2,11 @@ import { useState } from "react";
 import { Button, Drawer, Menu } from "antd";
 import { Link } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
-import MenuItems from "../Data/MenuData";
+import menuItems from "../Data/MenuData";
 import "../CSS/header.css";
 
 const HeaderFunctional = () => {
   const [visible, setVisible] = useState(false);
-  const { menudata } = MenuItems(); // Assuming MenuItems returns an object with menu items
 
   const showDrawer = () => {
     setVisible(!visible);
@@ -30,16 +29,16 @@ const HeaderFunctional = () => {
         </Button>
       </div>
       <div className="rightMenu">
-      <Menu className="Mainmenu" mode={"horizontal"} items={menudata} />
+      <Menu className="Mainmenu" mode={"horizontal"} items= {menuItems} />
       </div>
 
       <Drawer
         title="Menu"
         placement="right"
         onClose={showDrawer}
-        visible={visible}
+        open={visible}
       >
-      <Menu className="Mainmenu" mode={"vertical"} items={menudata} />
+      <Menu className="Mainmenu" mode={"vertical"} items={menuItems} />
                       
       </Drawer>
     </>
