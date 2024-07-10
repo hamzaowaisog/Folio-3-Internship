@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import Pizza from '../Data/PizzaData'; // Adjust the import path as necessary
 
 const CartContext = createContext();
 
@@ -32,8 +33,16 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const removeFromCart = (pizza, variant) => {
+    setCart((prevCart) =>
+      prevCart.filter(
+        (item) => !(item.pizza.name === pizza.name && item.variant === variant)
+      )
+    );
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, pizzaData: Pizza }}>
       {children}
     </CartContext.Provider>
   );
