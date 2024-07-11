@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types'; // Add this line to import PropTypes
 import Pizza from '../Data/PizzaData'; // Adjust the import path as necessary
 
 const CartContext = createContext();
@@ -6,6 +7,10 @@ const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
+  // Add prop validation for 'children'
+  CartProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
   const initialCart = JSON.parse(localStorage.getItem('cart')) || [];
   const [cart, setCart] = useState(initialCart);
 

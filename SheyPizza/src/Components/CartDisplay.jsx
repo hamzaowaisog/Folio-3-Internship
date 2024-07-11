@@ -1,13 +1,9 @@
-import React from "react";
 import { useCart } from "../Functionality/CartContext";
 import {
   Card,
   Button,
   Typography,
-  Row,
-  Col,
   Avatar,
-  Divider,
   Space,
 } from "antd";
 import { PlusOutlined, MinusOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -18,17 +14,17 @@ export default function CartDisplay() {
   const { cart, addToCart, removeFromCart, pizzaData } = useCart();
 
   const handleIncreaseQuantity = (item) => {
-    addToCart(item.pizza, item.variant, 1); // Increase quantity by 1
+    addToCart(item.pizza, item.variant, 1);
   };
 
   const handleDecreaseQuantity = (item) => {
     if (item.quantity > 1) {
-      addToCart(item.pizza, item.variant, -1); // Decrease quantity by 1 if > 1
+      addToCart(item.pizza, item.variant, -1);
     }
   };
 
   const handleRemoveItem = (item) => {
-    removeFromCart(item.pizza, item.variant); // Remove item from the cart
+    removeFromCart(item.pizza, item.variant);
   };
 
   const getPrice = (pizzaName, variantName) => {
@@ -57,14 +53,16 @@ export default function CartDisplay() {
       >
         Your Cart
       </Title>
-      <Row gutter={[32, 32]}>
-        {cart.map((item, index) => (
-          <Col key={index} xs={24} sm={12} lg={8}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ flex: 3, marginRight: "20px" }}>
+          {cart.map((item, index) => (
             <Card
+              key={index}
               hoverable
               style={{
                 borderRadius: "10px",
                 boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+                marginBottom: "16px",
               }}
               cover={
                 <img
@@ -108,8 +106,7 @@ export default function CartDisplay() {
                         color: "#333",
                       }}
                     >
-                      Price: $
-                      {getPrice(item.pizza.name, item.variant) * item.quantity}
+                      Price: ${getPrice(item.pizza.name, item.variant) * item.quantity}
                     </Text>
                   </>
                 }
@@ -136,31 +133,25 @@ export default function CartDisplay() {
                 />
               </Space>
             </Card>
-          </Col>
-        ))}
-      </Row>
-      <Divider style={{ margin: "32px 0" }} />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Title level={3} style={{ color: "#333" }}>
-          Total: ${totalPrice}
-        </Title>
-        <Button
-          type="primary"
-          size="large"
-          style={{
-            borderRadius: "5px",
-            backgroundColor: "#5C6AC4",
-            borderColor: "#5C6AC4",
-          }}
-        >
-          Checkout
-        </Button>
+          ))}
+        </div>
+        <div style={{ flex: 1, position: "sticky", top: "20px", alignSelf: "flex-start" }}>
+          <Title level={3} style={{ color: "#333", textAlign: "right" }}>
+            Total: ${totalPrice}
+          </Title>
+          <Button
+            type="primary"
+            size="large"
+            style={{
+              borderRadius: "5px",
+              backgroundColor: "#5C6AC4",
+              borderColor: "#5C6AC4",
+              width: "100%",
+            }}
+          >
+            Checkout
+          </Button>
+        </div>
       </div>
     </div>
   );
