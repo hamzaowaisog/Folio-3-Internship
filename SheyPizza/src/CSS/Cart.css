@@ -1,58 +1,93 @@
-.parent{
+.parent {
     padding: 20px;
     max-width: 1200px;
     margin: auto;
-}
-.title{
+  }
+  
+  .title {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
-}
-.child{
+  }
+  
+  .child {
     display: flex;
     justify-content: space-between;
-}
-.childish{
+  }
+  
+  .childish {
     flex: 5;
     margin-right: 20px;
     align-items: center;
-}
-.card{
+  }
+  
+  .card {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 16px;
     align-items: center;
-}
-.card_img{
-    height: 500px;
+  }
+  
+  .card_img {
+    height: 200px;
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-}
-#Cardtitle{
+  }
+  
+  #Cardtitle {
     margin-bottom: 0;
     color: #333;
-}
-.cardText{
+  }
+  
+  .cardText {
     display: block;
     color: #666;
-}
-#cardPrice{
+  }
+  
+  #cardPrice {
     display: block;
     font-size: 1.2em;
     color: #333;
-}
-#cardSpace{
+  }
+  
+  #cardSpace {
     margin-top: 16px;
-}
-.RightParent{
+  }
+  
+  .RightParent {
     flex: 1;
     position: sticky;
     top: 20px;
     align-self: flex-start;
-}
-#cartButton{
+  }
+  
+  #cardButton {
     border-radius: 5px;
-    width: 100% ;
-}
-
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .child {
+      flex-direction: column;
+    }
+  
+    .childish {
+      margin-right: 0;
+    }
+  
+    .RightParent {
+      position: static;
+      margin-top: 20px;
+    }
+  
+    .card_img {
+      height: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card_img {
+      height: 200px;
+    }
+  }

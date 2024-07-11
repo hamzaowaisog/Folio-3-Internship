@@ -1,5 +1,5 @@
 import { useCart } from "../Functionality/CartContext";
-import { Card, Button, Typography, Space } from "antd";
+import { Card, Button, Typography, Space, message } from "antd";
 import { PlusOutlined, MinusOutlined, DeleteOutlined } from "@ant-design/icons";
 import "../CSS/Cart.css";
 
@@ -40,8 +40,19 @@ export default function CartDisplay() {
     return total + getPrice(item.pizza.name, item.variant) * item.quantity;
   }, 0);
 
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "Item Successfully deleted",
+      duration: 5,
+    });
+  };
+
   return (
     <div className="parent">
+      {contextHolder}
       <Title level={2} className="title">
         Your Cart
       </Title>
@@ -95,7 +106,10 @@ export default function CartDisplay() {
                   type="danger"
                   shape="circle"
                   icon={<DeleteOutlined />}
-                  onClick={() => handleRemoveItem(item)}
+                  onClick={() => {
+                    handleRemoveItem(item);
+                    success();
+                  }}
                 />
               </Space>
             </Card>

@@ -1,4 +1,4 @@
-import { Card, Select, InputNumber, Button, Row, Col, Modal } from "antd";
+import { Card, Select, InputNumber, Button, Row, Col, Modal, message } from "antd";
 import "../CSS/content.css";
 import Pizza from "../Data/PizzaData";
 import useModal from "../Functionality/ModalFunction";
@@ -28,6 +28,15 @@ export default function PizzaContent() {
     addToCart
   } = useCart()
 
+  const [messageApi , contextHolder] = message.useMessage();
+
+  const success = () =>{
+    messageApi.open({
+      type: "success",
+      content: "Item added to cart",
+      duration: 5,
+    });
+  };
   
 
   return (
@@ -71,11 +80,12 @@ export default function PizzaContent() {
                 />
               </p>
               <p>Price:{calculatePrice(index)} Rs</p>
+              {contextHolder}
               <Button
                 className="Cart-Button"
                 type="primary"
                 danger
-                onClick={(event)=> { addToCart(pizza , pizzaStates[index].variant , pizzaStates[index].quantity);handleChildClick(event)}}
+                onClick={(event)=> { addToCart(pizza , pizzaStates[index].variant , pizzaStates[index].quantity);handleChildClick(event); success()}}
               >
                 ADD TO CART
               </Button>
