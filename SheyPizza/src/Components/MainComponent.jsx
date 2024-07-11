@@ -1,8 +1,8 @@
 import { Layout } from "antd";
 const { Header, Content } = Layout;
-import PizzaContent from "./Content";
 import "../CSS/MainComponent.css";
 import HeaderFunctional from "./header";
+import { Outlet } from "react-router-dom";
 
 export default function MainComponent(){
     return(
@@ -11,7 +11,7 @@ export default function MainComponent(){
                 <HeaderFunctional/>
             </Header>
             <Content className="content">
-                <PizzaContent/>
+                <Outlet/>
             </Content>
         </Layout>
     );
