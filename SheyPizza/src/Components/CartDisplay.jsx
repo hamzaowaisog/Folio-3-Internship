@@ -1,12 +1,7 @@
 import { useCart } from "../Functionality/CartContext";
-import {
-  Card,
-  Button,
-  Typography,
-  Avatar,
-  Space,
-} from "antd";
+import { Card, Button, Typography, Space } from "antd";
 import { PlusOutlined, MinusOutlined, DeleteOutlined } from "@ant-design/icons";
+import "../CSS/Cart.css";
 
 const { Title, Text } = Typography;
 
@@ -46,72 +41,43 @@ export default function CartDisplay() {
   }, 0);
 
   return (
-    <div style={{ padding: "20px", maxWidth: "1200px", margin: "auto" }}>
-      <Title
-        level={2}
-        style={{ textAlign: "center", marginBottom: "20px", color: "#333" }}
-      >
+    <div className="parent">
+      <Title level={2} className="title">
         Your Cart
       </Title>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div style={{ flex: 3, marginRight: "20px" }}>
+      <div className="child">
+        <div className="childish">
           {cart.map((item, index) => (
             <Card
               key={index}
               hoverable
-              style={{
-                borderRadius: "10px",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-                marginBottom: "16px",
-              }}
+              className="card"
               cover={
                 <img
                   alt={item.pizza.name}
                   src={getImageUrl(item.pizza.name)}
-                  style={{
-                    height: "200px",
-                    objectFit: "cover",
-                    borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px",
-                  }}
+                  className="card_img"
                 />
               }
             >
               <Card.Meta
-                avatar={
-                  <Avatar
-                    src={getImageUrl(item.pizza.name)}
-                    size={64}
-                    style={{ border: "2px solid #fff" }}
-                  />
-                }
                 title={
-                  <Title level={4} style={{ marginBottom: 0, color: "#333" }}>
+                  <Title level={4} id="Cardtitle">
                     {item.pizza.name}
                   </Title>
                 }
                 description={
                   <>
-                    <Text style={{ display: "block", color: "#666" }}>
-                      Variant: {item.variant}
-                    </Text>
-                    <Text style={{ display: "block", color: "#666" }}>
-                      Quantity: {item.quantity}
-                    </Text>
-                    <Text
-                      strong
-                      style={{
-                        display: "block",
-                        fontSize: "1.2em",
-                        color: "#333",
-                      }}
-                    >
-                      Price: ${getPrice(item.pizza.name, item.variant) * item.quantity}
+                    <Text className="cardText">Variant: {item.variant}</Text>
+                    <Text className="cardText">Quantity: {item.quantity}</Text>
+                    <Text strong id="cardPrice">
+                      Price: $
+                      {getPrice(item.pizza.name, item.variant) * item.quantity}
                     </Text>
                   </>
                 }
               />
-              <Space style={{ marginTop: "16px" }}>
+              <Space id="cardSpace">
                 <Button
                   type="primary"
                   shape="circle"
@@ -135,20 +101,9 @@ export default function CartDisplay() {
             </Card>
           ))}
         </div>
-        <div style={{ flex: 1, position: "sticky", top: "20px", alignSelf: "flex-start" }}>
-          <Title level={3} style={{ color: "#333", textAlign: "right" }}>
-            Total: ${totalPrice}
-          </Title>
-          <Button
-            type="primary"
-            size="large"
-            style={{
-              borderRadius: "5px",
-              backgroundColor: "#5C6AC4",
-              borderColor: "#5C6AC4",
-              width: "100%",
-            }}
-          >
+        <div className="RightParent">
+          <Title level={3}>Total: ${totalPrice}</Title>
+          <Button type="primary" size="large" danger id="cardButton">
             Checkout
           </Button>
         </div>
