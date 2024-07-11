@@ -82,7 +82,7 @@ export default function CartDisplay() {
                     <Text className="cardText">Variant: {item.variant}</Text>
                     <Text className="cardText">Quantity: {item.quantity}</Text>
                     <Text strong id="cardPrice">
-                      Price: $
+                      Price: Rs
                       {getPrice(item.pizza.name, item.variant) * item.quantity}
                     </Text>
                   </>
@@ -116,7 +116,7 @@ export default function CartDisplay() {
           ))}
         </div>
         <div className="RightParent">
-          <Title level={3}>Total: ${totalPrice}</Title>
+          <Title level={3}>Total: Rs{totalPrice}</Title>
           <Button type="primary" size="large" danger id="cardButton">
             Checkout
           </Button>
