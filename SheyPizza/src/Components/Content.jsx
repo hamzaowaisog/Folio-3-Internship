@@ -1,9 +1,17 @@
-import { Card, Select, InputNumber, Button, Row, Col, Modal, message } from "antd";
+import {
+  Card,
+  Select,
+  InputNumber,
+  Button,
+  Row,
+  Col,
+  Modal,
+  message,
+} from "antd";
 import "../CSS/content.css";
-import Pizza from "../Data/PizzaData";
 import useModal from "../Functionality/ModalFunction";
 import CardFunctionality from "../Functionality/CardFunctionality";
-import {useCart} from "../Functionality/CartContext";
+import { useCart } from "../Functionality/CartContext";
 
 
 export default function PizzaContent() {
@@ -18,50 +26,52 @@ export default function PizzaContent() {
   } = useModal();
 
   const {
+    isError,
     pizzaStates,
     handleVariantChange,
     handleQuantityChange,
-    calculatePrice
+    calculatePrice,
   } = CardFunctionality();
 
-  const {
-    addToCart
-  } = useCart()
 
-  const [messageApi , contextHolder] = message.useMessage();
+  const { addToCart } = useCart();
 
-  const success = () =>{
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const success = () => {
     messageApi.open({
       type: "success",
       content: "Item added to cart",
       duration: 5,
     });
   };
-  
-
   return (
     <>
+      {isError !== "" && <h2>{isError}</h2>}
       <Row gutter={[16, 32]} className="row-style">
-        {Pizza.map((pizza, index) => (
+        {pizzaStates.map((pizza, index) => (
           <Col key={index} md={8} sm={24} xs={24}>
             <Card
               title={pizza.name}
               hoverable
-              onClick={() => 
-                handleCardClick(pizza)
-              }
+              onClick={() => handleCardClick(pizza)}
               cover={<img src={pizza.img} alt={pizza.name}></img>}
             >
               <p>
                 Variants:
                 <Select
                   className="Select"
-                  defaultValue={pizzaStates[index].variant}
-                  onClick={(event)=>{handleChildClick(event)}}
-                  onChange={(value,event) => {handleChildClick(event);handleVariantChange(index,value)}}
+                  defaultValue={pizza.selectedVariant}
+                  onClick={(event) => {
+                    handleChildClick(event);
+                  }}
+                  onChange={(value, event) => {
+                    handleChildClick(event);
+                    handleVariantChange(index, value);
+                  }}
                   name="variant"
                 >
-                  {pizza.variant?.map((variant) => (
+                  {pizza.variants?.map((variant) => (
                     <Select.Option key={variant.name} value={variant.name}>
                       {variant.name}
                     </Select.Option>
@@ -74,8 +84,12 @@ export default function PizzaContent() {
                   min={1}
                   max={10}
                   defaultValue={1}
-                  onClick={(event) => {handleChildClick(event)}}
-                  onChange={(value) => {handleQuantityChange(index,value)}}
+                  onClick={(event) => {
+                    handleChildClick(event);
+                  }}
+                  onChange={(value) => {
+                    handleQuantityChange(index, value);
+                  }}
                   className="Select"
                 />
               </p>
@@ -85,7 +99,15 @@ export default function PizzaContent() {
                 className="Cart-Button"
                 type="primary"
                 danger
-                onClick={(event)=> { addToCart(pizza , pizzaStates[index].variant , pizzaStates[index].quantity);handleChildClick(event); success()}}
+                onClick={(event) => {
+                  addToCart(
+                    pizza,
+                    pizzaStates[index].variant,
+                    pizzaStates[index].quantity
+                  );
+                  handleChildClick(event);
+                  success();
+                }}
               >
                 ADD TO CART
               </Button>

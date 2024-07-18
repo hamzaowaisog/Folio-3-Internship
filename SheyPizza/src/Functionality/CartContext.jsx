@@ -1,13 +1,18 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types'; // Add this line to import PropTypes
-import Pizza from '../Data/PizzaData'; // Adjust the import path as necessary
+import PropTypes from 'prop-types'; 
+// import Pizza from '../Data/PizzaData'; 
+import GetPizza from '../API/GetPizza';
+
 
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-  // Add prop validation for 'children'
+  const {
+    pizza
+  } = GetPizza();
+  
   CartProvider.propTypes = {
     children: PropTypes.node.isRequired,
   };
@@ -47,7 +52,7 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, pizzaData: Pizza }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, pizzaData: pizza }}>
       {children}
     </CartContext.Provider>
   );

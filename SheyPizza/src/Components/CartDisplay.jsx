@@ -28,6 +28,7 @@ export default function CartDisplay() {
       const variant = pizza.variant.find((v) => v.name === variantName);
       return variant ? variant.price : 0;
     }
+    console.log(pizza)
     return 0;
   };
 
@@ -37,7 +38,7 @@ export default function CartDisplay() {
   };
 
   const totalPrice = cart.reduce((total, item) => {
-    return total + getPrice(item.pizza.name, item.variant) * item.quantity;
+    return total + getPrice(item.pizza.name, item.pizza.selectedVariant) * item.quantity;
   }, 0);
 
   const [messageApi, contextHolder] = message.useMessage();
@@ -79,11 +80,11 @@ export default function CartDisplay() {
                 }
                 description={
                   <>
-                    <Text className="cardText">Variant: {item.variant}</Text>
+                    <Text className="cardText">Variant: {item.pizza.selectedVariant}</Text>
                     <Text className="cardText">Quantity: {item.quantity}</Text>
                     <Text strong id="cardPrice">
-                      Price: Rs
-                      {getPrice(item.pizza.name, item.variant) * item.quantity}
+                      Price: Rs 
+                      {getPrice(item.pizza.name, item.pizza.selectedVariant) * item.quantity}
                     </Text>
                   </>
                 }
