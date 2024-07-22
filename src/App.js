@@ -8,6 +8,8 @@ function App() {
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   console.log(isAuthenticated);
+  const cartItems = useSelector((state) => state.cart.itemsList)
+  console.log(cartItems);
   return (
     <div className="App">
       {!isAuthenticated && <Auth />}
