@@ -6,18 +6,22 @@ const CardFunctionality = () => {
   const [pizzaStates, setPizzaStates] = useState([]);
 
   useEffect(() => {
-    console.log(pizza);
-    if (pizza.length > 0) {
-      const initialState = pizza.map((item) => ({
-        name: item.name,
-        img: item.img,
-        description: item.description,
-        variants: item.variant || [],
-        selectedVariant: item.variant ? item.variant[0].name : "",
-        quantity: 1,
-      }));
-      setPizzaStates(initialState);
-    }
+    if (isError !== "") {
+      setPizzaStates([]);
+      return;
+    } 
+      if (pizza.length > 0) {
+        const initialState = pizza.map((item) => ({
+          name: item.name,
+          img: item.img,
+          description: item.description,
+          variants: item.variant || [],
+          selectedVariant: item.variant ? item.variant[0].name : "",
+          quantity: 1,
+        }));
+        setPizzaStates(initialState);
+      }
+    
   }, [pizza]);
 
   const handleVariantChange = (index, value) => {

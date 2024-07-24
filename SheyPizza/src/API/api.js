@@ -1,14 +1,8 @@
 import axios from "../API/axios";
 
 export const getData = async(endpoint) => {
-    try{
-        const response = await axios.get(endpoint);
-        return response;
-    }
-    catch (error) {
-        return error.message;
-    }
-} ;
+    return axios.get(endpoint);
+};
 
 export const postData = async(endpoint, data) => {
     try{

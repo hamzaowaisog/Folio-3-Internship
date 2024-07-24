@@ -11,12 +11,11 @@ const useFetchData = (endPoint) => {
       setIsLoading(true);
       try {
         const result = await getData(endPoint);
-        console.log(result.data);
         setData(result.data);
       } catch (error) {
+        setData([]);
         setIsError(error.message);
-      }
-      finally{
+      } finally {
         setIsLoading(false);
       }
     };
@@ -26,7 +25,7 @@ const useFetchData = (endPoint) => {
   return {
     data,
     isError,
-    isLoading
+    isLoading,
   };
 };
 
