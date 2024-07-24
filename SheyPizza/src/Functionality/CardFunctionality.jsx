@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import GetPizza from "../API/GetPizza";
+import useFetchData from "../API/useFetch";
 
 const CardFunctionality = () => {
-  const { pizza, isError } = GetPizza();
+  const { data: pizza, isError } = useFetchData("/Pizza");
   const [pizzaStates, setPizzaStates] = useState([]);
 
   useEffect(() => {
+    console.log(pizza);
     if (pizza.length > 0) {
       const initialState = pizza.map((item) => ({
         name: item.name,

@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types'; 
 // import Pizza from '../Data/PizzaData'; 
-import GetPizza from '../API/GetPizza';
+import GetPizza from '../API/useFetch';
 
 
 const CartContext = createContext();
