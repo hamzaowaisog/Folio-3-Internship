@@ -34,13 +34,11 @@ export default function PizzaContent() {
     calculatePrice,
   } = CardFunctionality();
 
-
   const { addToCart } = useCart();
 
   const [messageApi, contextHolder] = message.useMessage();
 
-
-  const {isLoading} = useFetchData("/Pizza");
+  const { isLoading } = useFetchData("/Pizza");
 
   const success = () => {
     messageApi.open({
@@ -50,10 +48,8 @@ export default function PizzaContent() {
     });
   };
 
-
-
-  if(isLoading){
-    return <Loader/>
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
