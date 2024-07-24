@@ -15,7 +15,6 @@ import { useCart } from "../Functionality/CartContext";
 import Loader from "./Loader";
 import useFetchData from "../API/useFetch";
 
-
 export default function PizzaContent() {
   const {
     isModalOpen,
