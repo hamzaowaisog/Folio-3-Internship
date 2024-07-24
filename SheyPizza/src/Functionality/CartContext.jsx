@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types'; 
 // import Pizza from '../Data/PizzaData'; 
-import GetPizza from '../API/useFetch';
+// import GetPizza from '../API/useFetch';
+import useFetchData from '../API/useFetch';
 
 
 const CartContext = createContext();
@@ -10,8 +11,8 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const {
-    pizza
-  } = GetPizza();
+    data:pizza
+  } = useFetchData("/Pizza");
   
   CartProvider.propTypes = {
     children: PropTypes.node.isRequired,
