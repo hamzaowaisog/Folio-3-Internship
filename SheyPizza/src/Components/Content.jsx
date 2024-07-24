@@ -12,6 +12,8 @@ import "../CSS/content.css";
 import useModal from "../Functionality/ModalFunction";
 import CardFunctionality from "../Functionality/CardFunctionality";
 import { useCart } from "../Functionality/CartContext";
+import { useEffect, useState } from "react";
+import Loader from "./Loader";
 
 
 export default function PizzaContent() {
@@ -45,6 +47,29 @@ export default function PizzaContent() {
       duration: 5,
     });
   };
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+    const fetchData = async () =>{
+      try{
+        await new Promise (resolve => setTimeout(resolve,2000));
+        setLoading(false);
+      }
+      catch(error){
+       console.error("Error fetching data:", error);
+       setLoading(false); 
+      }
+    };
+
+    fetchData();
+
+  },[])
+
+  if(loading){
+    return <Loader/>
+  }
+
   return (
     <>
       {isError !== "" && <h2>{isError}</h2>}

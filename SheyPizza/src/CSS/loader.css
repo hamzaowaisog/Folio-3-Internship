@@ -1,0 +1,17 @@
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    font-size: 50px;
+}
+
+.custom .ant-spin-dot{
+    color: black;
+    font-size: 100px;
+}
