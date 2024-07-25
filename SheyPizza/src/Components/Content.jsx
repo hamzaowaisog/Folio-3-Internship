@@ -11,8 +11,9 @@ import {
 import "../CSS/content.css";
 import useModal from "../Functionality/ModalFunction";
 import CardFunctionality from "../Functionality/CardFunctionality";
-import { useCart } from "../Functionality/CartContext";
 import Loader from "./Loader";
+import { useDispatch } from "react-redux";
+import { cartAction } from "../Store/cartSlice";
 
 export default function PizzaContent() {
   const {
@@ -33,8 +34,7 @@ export default function PizzaContent() {
     handleQuantityChange,
     calculatePrice,
   } = CardFunctionality();
-
-  const { addToCart } = useCart();
+  const dispatch = useDispatch();
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -105,10 +105,12 @@ export default function PizzaContent() {
                 type="primary"
                 danger
                 onClick={(event) => {
-                  addToCart(
-                    pizza,
-                    pizzaStates[index].variant,
-                    pizzaStates[index].quantity
+                  dispatch(
+                    cartAction.updatingCart({
+                      pizza: pizza,
+                      variant: pizzaStates[index].selectedVariant,
+                      quantity: pizzaStates[index].quantity,
+                    })
                   );
                   handleChildClick(event);
                   success();

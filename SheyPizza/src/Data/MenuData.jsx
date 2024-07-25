@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../Functionality/CartContext";
+// import { useCart } from "../Functionality/CartContext";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const MenuFunction = () => {
-  const { cart } = useCart();
+  const cart = useSelector(state => state.cart.initialCart);
   const [cartLength, setCartLength] = useState(cart.length);
 
   useEffect(() => {

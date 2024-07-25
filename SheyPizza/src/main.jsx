@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { CartProvider } from "./Functionality/CartContext.jsx";
 import PizzaContent from "./Components/Content.jsx";
 import LoginForm from "./Components/LoginForm.jsx";
 import RegisterForm from "./Components/RegisterForm.jsx";
@@ -36,10 +35,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CartProvider>
       <Provider store={store}>
         <RouterProvider router={router} />
       </Provider>
-    </CartProvider>
   </React.StrictMode>
 );

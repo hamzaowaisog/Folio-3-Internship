@@ -1,25 +1,50 @@
-import { useCart } from "../Functionality/CartContext";
+// import { useCart } from "../Functionality/CartContext";
 import { Card, Button, Typography, Space, message } from "antd";
 import { PlusOutlined, MinusOutlined, DeleteOutlined } from "@ant-design/icons";
 import "../CSS/Cart.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPizzaData } from "../API/useFetch";
+import { cartAction } from "../Store/cartSlice";
+import { useEffect } from "react";
 
 const { Title, Text } = Typography;
 
 export default function CartDisplay() {
-  const { cart, addToCart, removeFromCart, pizzaData } = useCart();
+  const dispatch = useDispatch();
+
+  const pizzaData = useSelector((state) => state.cart.items);
+  console.log(pizzaData);
+  const cart = useSelector((state) => state.cart.initialCart);
+  useEffect(() => {
+    dispatch(fetchPizzaData("/Pizza"));
+  }, [dispatch]);
 
   const handleIncreaseQuantity = (item) => {
-    addToCart(item.pizza, item.variant, 1);
+    dispatch(
+      cartAction.updatingCart({
+        pizza: item.pizza,
+        variant: item.variant,
+        quantity: 1,
+      })
+    );
   };
 
   const handleDecreaseQuantity = (item) => {
     if (item.quantity > 1) {
-      addToCart(item.pizza, item.variant, -1);
+      dispatch(
+        cartAction.updatingCart({
+          pizza: item.pizza,
+          variant: item.variant,
+          quantity: -1,
+        })
+      );
     }
   };
 
   const handleRemoveItem = (item) => {
-    removeFromCart(item.pizza, item.variant);
+    dispatch(
+      cartAction.removingFromCart({ pizza: item.pizza, variant: item.variant })
+    );
   };
 
   const getPrice = (pizzaName, variantName) => {
@@ -28,7 +53,7 @@ export default function CartDisplay() {
       const variant = pizza.variant.find((v) => v.name === variantName);
       return variant ? variant.price : 0;
     }
-    console.log(pizza)
+    console.log(pizza);
     return 0;
   };
 
@@ -36,9 +61,12 @@ export default function CartDisplay() {
     const pizza = pizzaData.find((p) => p.name === pizzaName);
     return pizza ? pizza.img : "";
   };
-
+  console.log(cart);
   const totalPrice = cart.reduce((total, item) => {
-    return total + getPrice(item.pizza.name, item.pizza.selectedVariant) * item.quantity;
+    return (
+      total +
+      getPrice(item.pizza.name, item.pizza.selectedVariant) * item.quantity
+    );
   }, 0);
 
   const [messageApi, contextHolder] = message.useMessage();
@@ -80,11 +108,14 @@ export default function CartDisplay() {
                 }
                 description={
                   <>
-                    <Text className="cardText">Variant: {item.pizza.selectedVariant}</Text>
+                    <Text className="cardText">
+                      Variant: {item.pizza.selectedVariant}
+                    </Text>
                     <Text className="cardText">Quantity: {item.quantity}</Text>
                     <Text strong id="cardPrice">
-                      Price: Rs 
-                      {getPrice(item.pizza.name, item.pizza.selectedVariant) * item.quantity}
+                      Price: Rs
+                      {getPrice(item.pizza.name, item.pizza.selectedVariant) *
+                        item.quantity}
                     </Text>
                   </>
                 }
