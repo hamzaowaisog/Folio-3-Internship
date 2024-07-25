@@ -5,7 +5,7 @@ const pizzaSlice = createSlice({
     initialState: {
         pizzaStates: [],
         isError : '',
-    }
+    } 
 
 })
 
