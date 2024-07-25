@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types'; 
 // import Pizza from '../Data/PizzaData'; 
 // import GetPizza from '../API/useFetch';
-import useFetchData from '../API/useFetch';
+// import useFetchData from '../API/useFetch';
 
 
 const CartContext = createContext();
@@ -10,9 +10,9 @@ const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-  const {
-    data:pizza
-  } = useFetchData("/Pizza");
+  // const {
+  //   data:pizza
+  // } = useFetchData("/Pizza");
   
   CartProvider.propTypes = {
     children: PropTypes.node.isRequired,
@@ -53,7 +53,7 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, pizzaData: pizza }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );
