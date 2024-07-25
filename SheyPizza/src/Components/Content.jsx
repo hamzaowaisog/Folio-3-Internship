@@ -13,7 +13,6 @@ import useModal from "../Functionality/ModalFunction";
 import CardFunctionality from "../Functionality/CardFunctionality";
 import { useCart } from "../Functionality/CartContext";
 import Loader from "./Loader";
-// import useFetchData from "../API/useFetch";
 
 export default function PizzaContent() {
   const {
@@ -38,8 +37,6 @@ export default function PizzaContent() {
   const { addToCart } = useCart();
 
   const [messageApi, contextHolder] = message.useMessage();
-
-  // const { isLoading } = useFetchData("/Pizza");
 
   const success = () => {
     messageApi.open({
