@@ -8,6 +8,7 @@ import RegisterForm from "./Components/RegisterForm.jsx";
 import CartDisplay from "./Components/CartDisplay.jsx";
 import store from "./Store/store.js";
 import { Provider } from "react-redux";
+import AdminPizzaContent from "./Components/AdminContent.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
