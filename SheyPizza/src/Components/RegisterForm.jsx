@@ -61,44 +61,87 @@ export default function RegisterForm() {
                   label="Name"
                   name="Name"
                   validateStatus={errors.name && touched.name ? "error" : ""}
-                  help = {errors.name && touched.name ? errors.name : ""}
+                  help={errors.name && touched.name ? errors.name : ""}
                 >
                   <Field name="name">
-                    {({field}) => (   <Input {...field} placeholder="Name..."  value={values.name} onChange={handleChange} onBlur={handleBlur}/>
-                )}
-                </Field>
+                    {({ field }) => (
+                      <Input
+                        {...field}
+                        placeholder="Name..."
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    )}
+                  </Field>
                 </Form.Item>
                 <Form.Item
                   label="Email"
                   name="Email"
                   validateStatus={errors.email && touched.email ? "error" : ""}
-                  help = {errors.email && touched.email ? errors.email : ""}
+                  help={errors.email && touched.email ? errors.email : ""}
                 >
                   <Field name="email">
-                    {({field}) => (   <Input {...field} placeholder="Email..."  value={values.email} onChange={handleChange} onBlur={handleBlur}/>)}
+                    {({ field }) => (
+                      <Input
+                        {...field}
+                        placeholder="Email..."
+                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    )}
                   </Field>
                 </Form.Item>
 
                 <Form.Item
                   label="Password"
                   name="password"
-                  validateStatus={errors.password && touched.password ? "error" : ""}
-                  help = {errors.password && touched.password ? errors.password : ""}
+                  validateStatus={
+                    errors.password && touched.password ? "error" : ""
+                  }
+                  help={
+                    errors.password && touched.password ? errors.password : ""
+                  }
                   hasFeedback
                 >
                   <Field name="password">
-                    {({field}) => (   <Input.Password {...field} placeholder="Password..."  value={values.password} onChange={handleChange} onBlur={handleBlur}/>)}
+                    {({ field }) => (
+                      <Input.Password
+                        {...field}
+                        placeholder="Password..."
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    )}
                   </Field>
                 </Form.Item>
                 <Form.Item
                   label="Confirm-Password"
                   name="Confirm-password"
-                  validateStatus={errors.confirmPassword && touched.confirmPassword ? "error" : ""}
-                  help = {errors.confirmPassword && touched.confirmPassword ? errors.confirmPassword : ""}
+                  validateStatus={
+                    errors.confirmPassword && touched.confirmPassword
+                      ? "error"
+                      : ""
+                  }
+                  help={
+                    errors.confirmPassword && touched.confirmPassword
+                      ? errors.confirmPassword
+                      : ""
+                  }
                   hasFeedback
                 >
                   <Field name="confirmPassword">
-                    {({field}) => (   <Input.Password {...field} placeholder="Confirm Password..."  value={values.confirmPassword} onChange={handleChange} onBlur={handleBlur}/>)}
+                    {({ field }) => (
+                      <Input.Password
+                        {...field}
+                        placeholder="Confirm Password..."
+                        value={values.confirmPassword}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    )}
                   </Field>
                 </Form.Item>
 
@@ -108,8 +151,12 @@ export default function RegisterForm() {
                     sm: { offset: 8, span: 16 },
                   }}
                 >
-                  <Button type="primary" danger htmlType="submit" className={!(dirty && isValid) ? "disabled-btn" : ""}
-                  disabled={!(dirty && isValid)}
+                  <Button
+                    type="primary"
+                    danger
+                    htmlType="submit"
+                    className={!(dirty && isValid) ? "disabled-btn" : ""}
+                    disabled={!(dirty && isValid)}
                   >
                     Submit
                   </Button>
