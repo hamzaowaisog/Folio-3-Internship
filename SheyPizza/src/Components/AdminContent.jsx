@@ -6,6 +6,7 @@ import Loader from "./Loader";
 import { useDispatch } from "react-redux";
 import { DeletePizzaData } from "../API/Deletedata";
 import { fetchPizzaData } from "../API/useFetch";
+import { useLocation, useNavigate } from "react-router-dom";
 export default function AdminPizzaContent() {
   const {
     isModalOpen,
@@ -17,8 +18,11 @@ export default function AdminPizzaContent() {
     handleChildClick,
   } = useModal();
 
+  const location = useLocation();
+
   const { isError, pizzaStates, isLoading } = CardFunctionality();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDelete = async (pizzaId) => {
     try {
@@ -43,8 +47,9 @@ export default function AdminPizzaContent() {
           className="Cart-Button"
           type="primary"
           danger
-          onClick={(event) => {
-            handleChildClick(event);
+          onClick={() => {
+            navigate("/addPizza");
+            console.log(location);
           }}
         >
           Add Pizza

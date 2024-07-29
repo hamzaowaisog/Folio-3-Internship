@@ -10,6 +10,7 @@ import store from "./Store/store.js";
 import { Provider } from "react-redux";
 import AdminPizzaContent from "./Components/AdminContent.jsx";
 import RoleBaseRoute from "./Private/Routes/RoleBaseRoute.jsx";
+import AddView from "./Components/AddView.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,23 +21,26 @@ const router = createBrowserRouter([
         element: <PizzaContent />,
       },
       {
-        path: "/login",
+        path: "login",
         element: <LoginForm />,
       },
       {
-        path: "/register",
+        path: "register",
         element: <RegisterForm />,
       },
       {
-        path: "/cart",
+        path: "cart",
         element: <CartDisplay />,
       },
       {
-        path: "/admin",
-        element: (
-          <RoleBaseRoute element={AdminPizzaContent} requiredRole="admin" />
-        ),
+        path: "admin",
+        element: <RoleBaseRoute element={AdminPizzaContent} requiredRole="admin" />,
       },
+      {
+        path: "addPizza",
+        // element: <RoleBaseRoute element={AddView} requiredRole="admin" />,
+        element : <AddView />,
+      }
     ],
   },
 ]);

@@ -86,7 +86,6 @@ export default function LoginForm() {
                       {...field}
                       placeholder="Email"
                       value={values.email}
-                      onChange={handleChange}
                       onBlur={handleBlur}
                     />
                   )}
