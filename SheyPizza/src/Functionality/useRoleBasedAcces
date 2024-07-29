@@ -1,0 +1,16 @@
+import { useSelector } from "react-redux";
+
+const useRoleBasedAccess = (requiredRole) => {
+  const { isAdmin, isAuthenticated, data } = useSelector((state) => state.auth);
+
+  if (!isAuthenticated) {
+    console.log(isAuthenticated);
+    return "/login"
+  }
+  if (!data && !isAdmin && requiredRole !== "admin") {
+    return "/"
+  }
+
+  return null;
+};
+export default useRoleBasedAccess;
