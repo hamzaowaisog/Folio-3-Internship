@@ -30,6 +30,7 @@ const pizzaSlice = createSlice({
       .addCase(fetchPizzaData.fulfilled, (state, action) => {
         state.isLoading = false;
         const initialState = action.payload.map((item) => ({
+          id: item.id,
           name: item.name,
           img: item.img,
           description: item.description,
