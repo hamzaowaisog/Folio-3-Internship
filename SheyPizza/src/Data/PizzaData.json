@@ -120,5 +120,13 @@
     ],
     "description": "A flavorful pizza topped with spicy minced chicken (keema), a blend of aromatic spices, and a perfect balance of savory and zesty flavors."
   }
+],
+"Users": [
+  {
+    "name": "Shey",
+    "email": "admin@admin.com",
+    "password": "admin123",
+    "role": "admin"
+  }
 ]
 }

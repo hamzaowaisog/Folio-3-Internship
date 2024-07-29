@@ -1,23 +1,42 @@
 import { Button, Checkbox, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../CSS/form.css";
 import SignInSchema from "../Functionality/SignInSchema";
 import { Field, Formik } from "formik";
+import { useDispatch} from "react-redux";
+import { useEffect } from "react";
+import { fetchUserData } from "../API/useFetch";
+import Login from "../Functionality/Login";
 
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
 
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
 
-const initialValues = {
-  email: "",
-  password: "",
-};
+
 
 export default function LoginForm() {
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {checkLogin} = Login();
+
+  const onFinish = (values) => {
+    console.log("Success:", values);
+    if(checkLogin(values)){
+      navigate("/admin");
+    }
+  };
+
+  useEffect (()=>{
+    dispatch(fetchUserData("/Users"))
+  },[dispatch])
+  
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+  
+  const initialValues = {
+    email: "",
+    password: "",
+  };
   return (
     <Formik
       initialValues={initialValues}

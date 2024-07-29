@@ -9,6 +9,7 @@ import CartDisplay from "./Components/CartDisplay.jsx";
 import store from "./Store/store.js";
 import { Provider } from "react-redux";
 import AdminPizzaContent from "./Components/AdminContent.jsx";
+import RoleBaseRoute from "./Private/Routes/RoleBaseRoute.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,14 +31,20 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <CartDisplay />,
       },
+      {
+        path: "/admin",
+        element: (
+          <RoleBaseRoute element={AdminPizzaContent} requiredRole="admin" />
+        ),
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
