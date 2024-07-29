@@ -16,6 +16,7 @@ const authSlice = createSlice({
         },
         logout: state => {
             state.isAuthenticated = false;
+            state.isAdmin = false;
             state.data = null;
         }
     },
