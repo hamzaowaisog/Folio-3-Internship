@@ -16,11 +16,15 @@ export default function LoginForm() {
 
   const onFinish = (values) => {
     console.log("Success:", values);
-    if(checkLogin(values)){
+    if(checkLogin(values) === 1){
       navigate("/admin");
     }
-    else{
+    else if(checkLogin(values) === 2){
         navigate("/");
+    }
+    else {
+      alert("Invalid username or password");
+      navigate("/login")
     }
   };
 

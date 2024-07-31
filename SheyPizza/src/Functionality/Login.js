@@ -9,10 +9,14 @@ const Login = () => {
         for(let user of users){
             if(user.email === userdata.email && user.password === userdata.password && user.role === 'admin'){
                 dispatch(authActions.login({auth: true , admin:true}));
-                return true;
+                return 1;
+            }
+            else if(user.email === userdata.email && user.password === userdata.password && user.role !== 'admin'){
+                dispatch(authActions.login({auth: true , admin:false}));
+                return 2;
             }
         }
-        return false;
+        return 3;
     }
     return {
         checkLogin,

@@ -140,6 +140,13 @@
       "email": "admin@admin.com",
       "password": "admin123",
       "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "John",
+      "email": "johndoe@gmail.com",
+      "password": "password123",
+      "role": "user"
     }
   ]
 }
