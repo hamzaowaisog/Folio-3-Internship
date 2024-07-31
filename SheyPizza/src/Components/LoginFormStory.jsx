@@ -1,7 +1,7 @@
 import { Button, Checkbox, Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import "../CSS/form.css";
-import SignInSchema from "../Functionality/SignInSchema";
+import SignInSchema from "../Functionality/SignInStorySchema";
 import { Field, Formik } from "formik";
 import { useDispatch} from "react-redux";
 import { useEffect } from "react";
@@ -12,7 +12,7 @@ import Login from "../Functionality/Login";
 
 
 
-export default function LoginForm() {
+export default function LoginForm({initialValues , onSubmit}) {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,15 +36,15 @@ export default function LoginForm() {
     console.log("Failed:", errorInfo);
   };
   
-  const initialValues = {
-    email: "",
-    password: "",
-  };
+  // const initialValues = {
+  //   email: "",
+  //   password: "",
+  // };
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={SignInSchema}
-      onSubmit={onFinish}
+      onSubmit={onSubmit}
     >
       {(formik) => {
         const {
@@ -139,8 +139,6 @@ export default function LoginForm() {
                   type="primary"
                   danger
                   htmlType="submit"
-                  className={!(dirty && isValid) ? "disabled-btn" : ""}
-                  disabled={!(dirty && isValid)}
                 >
                   Submit
                 </Button>
