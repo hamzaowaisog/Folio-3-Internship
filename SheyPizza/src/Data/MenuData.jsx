@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-// import { useCart } from "../Functionality/CartContext";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../Store/authslice";

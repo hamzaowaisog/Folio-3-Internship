@@ -1,4 +1,4 @@
-// import { useCart } from "../Functionality/CartContext";
+
 import { Card, Button, Typography, Space, message } from "antd";
 import { PlusOutlined, MinusOutlined, DeleteOutlined } from "@ant-design/icons";
 import "../CSS/Cart.css";
