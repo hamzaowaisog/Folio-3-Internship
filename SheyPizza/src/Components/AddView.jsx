@@ -1,56 +1,23 @@
-import { Button, Form, Input, Checkbox, message } from "antd";
+import { Button, Form, Input} from "antd";
 import { Formik, Field, ErrorMessage, FieldArray } from "formik";
 import "../CSS/AddPizza.css";
 import AddPizzaSchema from "../Functionality/AddPizzaSchema";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { PostPizzaData } from "../API/PutData";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { PostPizzaData } from "../API/PutData";
+import AddPizzaInitital from "../Data/AddPizzaInitial";
+import AddPizzaData from "../Functionality/AddPizzaData";
 
 export default function AddView() {
-  const [imageUrl, setImageUrl] = useState("");
-  const navigate = useNavigate();
+  const { initialValues } = AddPizzaInitital();
 
-  const handleImageUrlChange = (e,setFieldValue) => {
-    setImageUrl(e.target.value);
-    setFieldValue("img", e.target.value);
-  };
-
-  const onFinish = async (values) => {
-   
-    try{
-    await PostPizzaData(values , navigate);
-    console.log("Form values:", values);
-    message.success("Pizza added successfully!");
-    }
-    catch(error) {
-      console.error('Error posting pizza:', error);
-      throw error;
-    }
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-    message.error("Failed to add pizza.");
-  };
-
-  const initialValues = {
-    name: "",
-    img: "",
-    description: "",
-    variant: [
-      { name: "Small", price: "" 
-
-      },
-      {
-        name: "Medium",
-        price: "",
-      },
-      {
-        name: "Large",
-        price: "",
-      },
-    ],
-  };
+  const {
+    imageUrl,
+    setImageUrl,
+    handleImageUrlChange,
+    onFinish,
+    onFinishFailed,
+  } = AddPizzaData();
 
   return (
     <div className="box">
@@ -109,7 +76,9 @@ export default function AddView() {
                     {...field}
                     onBlur={handleBlur}
                     placeholder="https://www.example.com/image.jpg"
-                    onChange={(e) =>{handleImageUrlChange(e, setFieldValue)}}
+                    onChange={(e) => {
+                      handleImageUrlChange(e, setFieldValue);
+                    }}
                   />
                 )}
               </Field>
@@ -147,16 +116,13 @@ export default function AddView() {
               </Field>
             </Form.Item>
 
-            <Form.Item
-              label="Variants"
-              name="variant"
-            >
+            <Form.Item label="Variants" name="variant">
               <FieldArray name="variant">
-                {() =>(
+                {() => (
                   <div className="variant-group">
-                    {values.variant.map((variant,index) =>(
+                    {values.variant.map((variant, index) => (
                       <div className="variant-item" key={variant.name}>
-                          <Field name={`variant.${index}.name`}>
+                        <Field name={`variant.${index}.name`}>
                           {({ field }) => (
                             <Input
                               {...field}
@@ -194,7 +160,12 @@ export default function AddView() {
                 sm: { span: 16, offset: 8 },
               }}
             >
-              <Button type="primary" danger htmlType="submit" disabled={isSubmitting}>
+              <Button
+                type="primary"
+                danger
+                htmlType="submit"
+                disabled={isSubmitting}
+              >
                 Add Pizza
               </Button>
             </Form.Item>
