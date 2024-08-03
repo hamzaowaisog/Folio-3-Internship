@@ -76,6 +76,12 @@ body {
   border-color: #ff4d4f;
   border-radius: 4px;
 }
+.error-message{
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+  margin-left: 5px;
+}
 .ant-btn-primary:hover,
 .ant-btn-primary:focus {
   background-color: #ff7875;

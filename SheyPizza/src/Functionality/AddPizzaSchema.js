@@ -6,7 +6,12 @@ const AddPizzaSchema = YUP.object({
     variant: YUP.array().of(YUP.object({
         name: YUP.string().required("Please Input The Variant Name!"),
         price: YUP.number().required("Price is required").typeError("Price Must be a number")
-    })).min(1,'Please select at least one variant!').required("Please Select Variant"),
+    })).min(1,'Please select at least one variant!').required("Please Select Variant").test(
+        "at-least-one-price",
+        "At least one variant must have a price",
+        (variants) =>
+          variants && variants.some((variant) => variant.price !== "")
+      ),
 
 });
 

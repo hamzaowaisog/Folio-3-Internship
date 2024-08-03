@@ -1,137 +1,197 @@
-import { Button, Form, Input, Checkbox, message } from 'antd';
+import { Button, Form, Input, Checkbox, message } from "antd";
+import { Formik, Field, ErrorMessage, FieldArray } from "formik";
 import "../CSS/AddPizza.css";
-import { useState } from 'react';
+import AddPizzaSchema from "../Functionality/AddPizzaSchema";
+import { useState } from "react";
 
 export default function AddView() {
-  const [form] = Form.useForm();
-  const [checkedVariants, setCheckedVariants] = useState([]);
-  const [prices, setPrices] = useState({});
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
 
-  const handleVariantChange = (checkedValues) => {
-    setCheckedVariants(checkedValues);
-  };
 
-  const handlePriceChange = (e, variant) => {
-    setPrices({
-      ...prices,
-      [variant]: e.target.value
-    });
-  };
 
-  const handleImageUrlChange = (e) => {
+  const handleImageUrlChange = (e,setFieldValue) => {
     setImageUrl(e.target.value);
+    setFieldValue("img", e.target.value);
   };
 
   const onFinish = (values) => {
-    console.log('Form values:', values);
-    console.log('Prices:', prices);
-    message.success('Pizza added successfully!');
+    console.log("Form values:", values);
+    message.success("Pizza added successfully!");
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-    message.error('Failed to add pizza.');
+    console.log("Failed:", errorInfo);
+    message.error("Failed to add pizza.");
+  };
+
+  const initialValues = {
+    name: "",
+    img: "",
+    description: "",
+    variant: [
+      { name: "small", price: "" 
+
+      },
+      {
+        name: "medium",
+        price: "",
+      },
+      {
+        name: "large",
+        price: "",
+      },
+    ],
   };
 
   return (
     <div className="box">
       <h1 className="heading">Add Pizza</h1>
-      <Form
-        form={form}
-        name="addPizza"
-        labelCol={{ xs: { span: 24 }, sm: { span: 8 } }}
-        wrapperCol={{ xs: { span: 24 }, sm: { span: 16 } }}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
+      <Formik
+        initialValues={initialValues}
+        validationSchema={AddPizzaSchema}
+        onSubmit={onFinish}
       >
-        <Form.Item
-          label="Pizza Name"
-          name="PizzaName"
-          rules={[{ required: true, message: 'Please input the pizza name!' }]}
-        >
-          <Input placeholder="Alfredo" />
-        </Form.Item>
+        {({
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          setFieldValue,
+          errors,
+          touched,
+        }) => (
+          <Form
+            name="addPizza"
+            labelCol={{ xs: { span: 24 }, sm: { span: 8 } }}
+            wrapperCol={{ xs: { span: 24 }, sm: { span: 16 } }}
+            initialValues={{ remember: true }}
+            onFinish={handleSubmit}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
+          >
+            <Form.Item
+              label="Pizza Name"
+              name="name"
+              validateStatus={touched.name && errors.name ? "error" : null}
+              help={touched.name && errors.name ? errors.name : ""}
+            >
+              <Field name="name">
+                {({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder="Alfredo"
+                    value={values.name}
+                    onBlur={handleBlur}
+                  />
+                )}
+              </Field>
+            </Form.Item>
 
-        <Form.Item
-          label="Image URL"
-          name="ImageUrl"
-          rules={[{ required: true, message: 'Please input the image URL!' }]}
-        >
-          <Input
-            placeholder="https://www.example.com/image.jpg"
-            onChange={handleImageUrlChange}
-          />
-        </Form.Item>
+            <Form.Item
+              label="Image URL"
+              name="img"
+              validateStatus={touched.img && errors.img ? "error" : null}
+              help={touched.img && errors.img ? errors.img : ""}
+            >
+              <Field name="img">
+                {({ field }) => (
+                  <Input
+                    {...field}
+                    onBlur={handleBlur}
+                    placeholder="https://www.example.com/image.jpg"
+                    onChange={(e) =>{handleImageUrlChange(e, setFieldValue)}}
+                  />
+                )}
+              </Field>
+            </Form.Item>
 
-        {imageUrl && (
-          <div className="image-preview"><center>
-            <img src={imageUrl} alt="Pizza Preview" /></center>
-          </div>
+            {imageUrl && (
+              <div className="image-preview">
+                <center>
+                  <img src={imageUrl} alt="Pizza Preview" />
+                </center>
+              </div>
+            )}
+
+            <Form.Item
+              label="Description"
+              name="description"
+              validateStatus={
+                touched.description && errors.description ? "error" : null
+              }
+              help={
+                touched.description && errors.description
+                  ? errors.description
+                  : ""
+              }
+            >
+              <Field name="description">
+                {({ field }) => (
+                  <Input.TextArea
+                    {...field}
+                    placeholder="A delicious pizza with creamy Alfredo sauce, topped with spinach, mushrooms, and chicken."
+                    value={values.description}
+                    onBlur={handleBlur}
+                  />
+                )}
+              </Field>
+            </Form.Item>
+
+            <Form.Item
+              label="Variants"
+              name="variant"
+            >
+              <FieldArray name="variant">
+                {() =>(
+                  <div className="variant-group">
+                    {values.variant.map((variant,index) =>(
+                      <div className="variant-item" key={variant.name}>
+                          <Field name={`variant.${index}.name`}>
+                          {({ field }) => (
+                            <Input
+                              {...field}
+                              placeholder={variant.name}
+                              disabled
+                            />
+                          )}
+                        </Field>
+                        <Field name={`variant.${index}.price`}>
+                          {({ field }) => (
+                            <Input
+                              {...field}
+                              type="number"
+                              placeholder="price"
+                              onChange={handleChange}
+                              className="variant-price-input"
+                            />
+                          )}
+                        </Field>
+                        <ErrorMessage
+                          name={`variant.${index}.price`}
+                          component="div"
+                          className="error-message"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </FieldArray>
+            </Form.Item>
+
+            <Form.Item
+              wrapperCol={{
+                xs: { span: 24, offset: 0 },
+                sm: { span: 16, offset: 8 },
+              }}
+            >
+              <Button type="primary" danger htmlType="submit" disabled={isSubmitting}>
+                Add Pizza
+              </Button>
+            </Form.Item>
+          </Form>
         )}
-
-        <Form.Item
-          label="Description"
-          name="Description"
-          rules={[{ required: true, message: 'Please input the description!' }]}
-        >
-          <Input.TextArea placeholder="Description" />
-        </Form.Item>
-
-        <Form.Item
-          label="Variants"
-          name="Variants"
-          rules={[{ required: true, message: 'Please select at least one variant!' }]}
-        >
-          <Checkbox.Group onChange={handleVariantChange}>
-            <div className="variant-group">
-              <div className="variant-item">
-                <Checkbox value="Small">Sm</Checkbox>
-                {checkedVariants.includes('Small') && (
-                  <Input
-                    type="number"
-                    placeholder="Price"
-                    onChange={(e) => handlePriceChange(e, 'Small')}
-                    className="variant-price-input"
-                  />
-                )}
-              </div>
-              <div className="variant-item">
-                <Checkbox value="Medium">Md</Checkbox>
-                {checkedVariants.includes('Medium') && (
-                  <Input
-                    type="number"
-                    placeholder="Price"
-                    onChange={(e) => handlePriceChange(e, 'Medium')}
-                    className="variant-price-input"
-                  />
-                )}
-              </div>
-              <div className="variant-item">
-                <Checkbox value="Large">Lg</Checkbox>
-                {checkedVariants.includes('Large') && (
-                  <Input
-                    type="number"
-                    placeholder="Price"
-                    onChange={(e) => handlePriceChange(e, 'Large')}
-                    className="variant-price-input"
-                  />
-                )}
-              </div>
-            </div>
-          </Checkbox.Group>
-        </Form.Item>
-
-        <Form.Item
-          wrapperCol={{ xs: { span: 24, offset: 0 }, sm: { span: 16, offset: 8 } }}
-        >
-          <Button type="primary" danger htmlType="submit">
-            Add Pizza
-          </Button>
-        </Form.Item>
-      </Form>
+      </Formik>
     </div>
   );
 }
