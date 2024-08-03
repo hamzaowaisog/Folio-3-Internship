@@ -2,9 +2,6 @@ import { Button, Form, Input} from "antd";
 import { Formik, Field, ErrorMessage, FieldArray } from "formik";
 import "../CSS/AddPizza.css";
 import AddPizzaSchema from "../Functionality/AddPizzaSchema";
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { PostPizzaData } from "../API/PutData";
 import AddPizzaInitital from "../Data/AddPizzaInitial";
 import AddPizzaData from "../Functionality/AddPizzaData";
 
@@ -13,7 +10,6 @@ export default function AddView() {
 
   const {
     imageUrl,
-    setImageUrl,
     handleImageUrlChange,
     onFinish,
     onFinishFailed,
