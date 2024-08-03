@@ -38,15 +38,15 @@ export default function AddView() {
     img: "",
     description: "",
     variant: [
-      { name: "small", price: "" 
+      { name: "Small", price: "" 
 
       },
       {
-        name: "medium",
+        name: "Medium",
         price: "",
       },
       {
-        name: "large",
+        name: "Large",
         price: "",
       },
     ],
