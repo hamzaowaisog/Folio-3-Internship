@@ -3,20 +3,29 @@ import { Formik, Field, ErrorMessage, FieldArray } from "formik";
 import "../CSS/AddPizza.css";
 import AddPizzaSchema from "../Functionality/AddPizzaSchema";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { PostPizzaData } from "../API/PutData";
 
 export default function AddView() {
   const [imageUrl, setImageUrl] = useState("");
-
-
+  const navigate = useNavigate();
 
   const handleImageUrlChange = (e,setFieldValue) => {
     setImageUrl(e.target.value);
     setFieldValue("img", e.target.value);
   };
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
+   
+    try{
+    await PostPizzaData(values , navigate);
     console.log("Form values:", values);
     message.success("Pizza added successfully!");
+    }
+    catch(error) {
+      console.error('Error posting pizza:', error);
+      throw error;
+    }
   };
 
   const onFinishFailed = (errorInfo) => {

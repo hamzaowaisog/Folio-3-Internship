@@ -6,7 +6,11 @@ export const getData = async(endpoint) => {
 
 export const postData = async(endpoint, data) => {
     try{
-        const response = await axios.post(endpoint, data);
+        const response = await axios.post(endpoint, data,{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         return response;
     }
     catch (error) {
