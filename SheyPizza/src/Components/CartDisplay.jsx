@@ -1,11 +1,6 @@
-
-import { Card, Button, Typography, Space, message } from "antd";
+import { Card, Button, Typography, Space } from "antd";
 import { PlusOutlined, MinusOutlined, DeleteOutlined } from "@ant-design/icons";
 import "../CSS/Cart.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPizzaData } from "../API/useFetch";
-import { cartAction } from "../Store/cartSlice";
-import { useEffect } from "react";
 import CartDisplayFunction from "../Functionality/CartDisplay";
 
 const { Title, Text } = Typography;
@@ -19,7 +14,6 @@ export default function CartDisplay() {
     getPrice,
     getImageUrl,
     totalPrice,
-    messageApi,
     contextHolder,
     success,
     cart
