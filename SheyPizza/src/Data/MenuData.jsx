@@ -11,7 +11,7 @@ const MenuFunction = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setCartLength(cart.length); // Update cart length whenever cart changes
+    setCartLength(cart.length); 
   }, [cart,isAuth]);
 
   const logOut = () =>{

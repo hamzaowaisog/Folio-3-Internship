@@ -12,12 +12,14 @@ const authSlice = createSlice({
         login: (state,action) => {
             state.isAuthenticated = action.payload.auth;
             state.isAdmin = action.payload.admin;
+            localStorage.setItem('authState', JSON.stringify(state));
 
         },
         logout: state => {
             state.isAuthenticated = false;
             state.isAdmin = false;
             state.data = null;
+            localStorage.removeItem('authState');
         }
     },
     extraReducers: (builder) =>{
