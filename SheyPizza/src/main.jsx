@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import AdminPizzaContent from "./Components/AdminContent.jsx";
 import RoleBaseRoute from "./Private/Routes/RoleBaseRoute.jsx";
 import AddView from "./Components/AddView.jsx";
+import EditView from "./Components/EditViewForm.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,8 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "addPizza",
-        // element: <RoleBaseRoute element={AddView} requiredRole="admin" />,
-        element : <AddView />,
+        element: <RoleBaseRoute element={AddView} requiredRole="admin" />,
+      },
+      {
+        path: "editPizza/:id",
+        element: <RoleBaseRoute element={EditView} requiredRole="admin" />,
       }
     ],
   },

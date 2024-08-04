@@ -23,7 +23,6 @@ const MenuFunction = () => {
     (isAuth && {key: "1", label: <Link onClick={logOut} >LogOut</Link>}),
     { key: "2", label: <Link to={"/cart"}>Cart {cartLength} </Link> },
     (isAdmin &&{key : "3", label: <Link to={"/admin"}>Admin Panel</Link>}),
-    (isAdmin && {key: "4", label: <Link to={"/addPizza"}>Add Pizza</Link>}),
   ];
 
   return {

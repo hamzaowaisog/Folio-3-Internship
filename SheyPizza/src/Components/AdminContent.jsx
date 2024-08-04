@@ -71,6 +71,7 @@ export default function AdminPizzaContent() {
                 danger
                 onClick={(event) => {
                   handleChildClick(event);
+                  navigate(`/editPizza/${pizza.id}`);
                 }}
               >
                 Edit

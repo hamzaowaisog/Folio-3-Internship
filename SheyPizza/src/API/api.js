@@ -20,7 +20,11 @@ export const postData = async(endpoint, data) => {
 
 export const putData = async(endpoint, data) => {
     try{
-        const response = await axios.put(endpoint, data);
+        const response = await axios.put(endpoint, data,{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         return response;
     }
     catch (error) {
