@@ -13,3 +13,16 @@ export const PostPizzaData = async (data,navigate) =>{
          throw Error;
    }
 }
+
+export const PostUserData = async (data,navigate) =>{
+    try{
+        const response = await postData('/Users/',data);
+        console.log(response.data)
+        navigate('/login');
+        return response.data;
+   }
+   catch(Error) {
+         console.error('Error posting user:', Error);
+         throw Error;
+   }
+}

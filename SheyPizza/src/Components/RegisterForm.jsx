@@ -3,22 +3,14 @@ import { Link } from "react-router-dom";
 import "../CSS/form.css";
 import { Field, Formik } from "formik";
 import SignUpSchema from "../Functionality/SignUpSchema";
+import RegisterUserInitial from "../Data/RegisterUserInitial";
+import RegisterUser from "../Functionality/RegisterUser";
 
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
 
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-
-const initialValues = {
-  name: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-};
 export default function RegisterForm() {
+const {onFinish , onFinishFailed} = RegisterUser();
+const {initialValues} = RegisterUserInitial();
+
   return (
     <Formik
       initialValues={initialValues}

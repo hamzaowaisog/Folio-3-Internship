@@ -275,6 +275,20 @@
       "email": "johndoe@gmail.com",
       "password": "password123",
       "role": "user"
+    },
+    {
+      "id": "ac7e",
+      "name": "hamza",
+      "email": "hamzaowais31@gmail.com",
+      "password": "abcdefgh",
+      "role": "user"
+    },
+    {
+      "id": "3747",
+      "name": "Zain Saqib",
+      "email": "zain@gmail.com",
+      "password": "zain12345",
+      "role": "user"
     }
   ]
 }
