@@ -1,4 +1,4 @@
-# Pizza Ordering Application
+# SHEY Pizza
 
 Welcome to the Pizza Ordering Application! This project allows users to manage pizza orders, including browsing, adding, updating, and deleting pizzas. It supports user authentication, a shopping cart, and role-based access for admins and regular users.
 
