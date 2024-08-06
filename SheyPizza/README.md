@@ -178,6 +178,6 @@ npm run dev
 yarn dev
 ```
 
-### Contributing
+## Contributing
 
 Contributions are welcome! Feel free to fork this repository and submit pull requests. Ensure that your contributions follow the existing style and include relevant tests.
