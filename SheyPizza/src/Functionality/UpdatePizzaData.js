@@ -1,9 +1,9 @@
 import { message } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchSpecificPizza } from "../API/useFetch";
+// import { fetchSpecificPizza } from "../API/useFetch";
 import { UpdatePizzaData } from "../API/UpdateData";
-import { fetchPizzaWrapper } from "./FetchPizzaWrapper";
+// import { fetchPizzaWrapper } from "./FetchPizzaWrapper";
 
 const UpdatePizza = () => {
   const { id } = useParams();
