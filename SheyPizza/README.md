@@ -70,7 +70,7 @@ Welcome to the Pizza Ordering Application! This project allows users to manage p
   - `modalDes`: Description of the pizza.
   - `modalImg`: Image URL of the pizza.
 - **Key Functions**:
-  - `showModal(pizza)`: Opens the modal and sets its content.
+  - `showModal(pizza)`: Sets modal content and opens the modal.
   - `handleOk()`: Closes the modal.
   - `handleCardClick(pizza)`: Opens the modal when a pizza card is clicked.
   - `handleChildClick(event)`: Prevents event propagation in modal children.
@@ -81,16 +81,16 @@ Welcome to the Pizza Ordering Application! This project allows users to manage p
 
 Contains functions for making API requests using Axios.
 
-- **`getData(endpoint)`**: Makes a GET request.
-- **`postData(endpoint, data)`**: Makes a POST request with JSON data.
-- **`putData(endpoint, data)`**: Makes a PUT request with JSON data.
-- **`deleteData(endpoint)`**: Makes a DELETE request.
+- **`getData(endpoint)`**: Makes a GET request to the specified endpoint.
+- **`postData(endpoint, data)`**: Makes a POST request with JSON data to the specified endpoint.
+- **`putData(endpoint, data)`**: Makes a PUT request with JSON data to the specified endpoint.
+- **`deleteData(endpoint)`**: Makes a DELETE request to the specified endpoint.
 
 #### `useFetch.js`
 
 Contains thunk actions for fetching data using Redux Toolkit.
 
-- **`fetchPizzaData`**: Fetches pizza data.
+- **`fetchPizzaData`**: Fetches pizza data from the `/Pizza` endpoint.
 - **`fetchUserData`**: Fetches user data.
 - **`fetchSpecificPizza(id)`**: Fetches data for a specific pizza by ID.
 
@@ -118,6 +118,28 @@ Handles asynchronous operations, such as API calls, and dispatches actions based
 - **`fetchPizzaData`**: Fetches and updates pizza data.
 - **`fetchUserData`**: Fetches and updates user data.
 
+## Custom Hooks
+
+### `useModal`
+
+- **Purpose**: Manages modal state and behavior for displaying pizza details.
+- **Key States**:
+  - `isModalOpen`: Boolean indicating if the modal is open.
+  - `modalTitle`: Title of the modal.
+  - `modalDes`: Description of the pizza.
+  - `modalImg`: Image URL of the pizza.
+- **Key Functions**:
+  - `showModal(pizza)`: Sets modal content and opens the modal.
+  - `handleOk()`: Closes the modal.
+  - `handleCardClick(pizza)`: Opens the modal when a pizza card is clicked.
+  - `handleChildClick(event)`: Prevents event propagation in modal children.
+
+### `useRoleBasedAccess`
+
+- **Purpose**: Manages access control based on user roles.
+- **Key Functions**:
+  - Checks user authentication and role to determine access.
+
 ## Setup Instructions
 
 ### Prerequisites
@@ -132,3 +154,30 @@ Ensure that you have the following installed:
 ```bash
 git clone https://github.com/hamzaowaisog/Folio-3-Internship.git
 cd Folio-3-Internship
+```
+
+### Install Dependencies
+```bash
+npm install
+#or 
+yarn install
+```
+
+### Configure Envirmoment Variable
+
+Create a `.env` file in the root directory and add your environment variables. Example:
+```bash
+VITE_API_BASE_URL=http://your-api-base-url.com
+```
+
+### Run the Development Server
+
+```bash
+npm run dev
+#or
+yarn dev
+```
+
+### Contributing
+
+Contributions are welcome! Feel free to fork this repository and submit pull requests. Ensure that your contributions follow the existing style and include relevant tests.
