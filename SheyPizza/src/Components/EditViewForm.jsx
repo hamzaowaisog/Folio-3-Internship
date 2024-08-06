@@ -4,16 +4,42 @@ import { Button, Form, Input } from "antd";
 import "../CSS/AddPizza.css";
 import Loader from "./Loader";
 import UpdatePizza from "../Functionality/UpdatePizzaData";
+import { Suspense, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { fetchPizzaWrapper } from "../Functionality/FetchPizzaWrapper";
+import ErrorBoundary from "antd/es/alert/ErrorBoundary";
 
 export default function EditView() {
+  const {id} = useParams();
+  return (
+    <ErrorBoundary >
+  <Suspense fallback={<Loader/>}>
+    <EditForm
+    id={id}/>
+  </Suspense>
+  </ErrorBoundary>
+  );
+
+ 
+}
+
+const EditForm =  ({id}) => {
+  const [PizzaData,setPizzaData] = useState(null);
 
   const {
     imageUrl,
     handleImageUrlChange,
     onFinish,
     onFinishFailed,
-    PizzaData
   } = UpdatePizza();
+
+  useEffect(() =>{
+    fetchPizzaWrapper(id).then(response => {
+      setPizzaData(response);
+    })
+  },[id]);
+
+
 
   return (
     <div className="box">

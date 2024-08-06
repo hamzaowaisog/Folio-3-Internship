@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchSpecificPizza } from "../API/useFetch";
 import { UpdatePizzaData } from "../API/UpdateData";
+import { fetchPizzaWrapper } from "./FetchPizzaWrapper";
 
 const UpdatePizza = () => {
   const { id } = useParams();
   const [imageUrl, setImageUrl] = useState("");
-  const [PizzaData, setPizzaData] = useState(null);
+  // const [PizzaData, setPizzaData] = useState(null);
+  // const PizzaData = fetchPizzaWrapper();
 
   const navigate = useNavigate();
 
@@ -16,13 +18,13 @@ const UpdatePizza = () => {
     setFieldValue("img", e.target.value);
   };
 
-  const getPizzaData = async () => {
-    const data = await fetchSpecificPizza(id);
-    setPizzaData(data);
-  };
-  useEffect(() => {
-    getPizzaData();
-  }, [id]);
+  // const getPizzaData = async () => {
+  //   const data = await fetchSpecificPizza(id);
+  //   setPizzaData(data);
+  // };
+  // useEffect(() => {
+  //   getPizzaData();
+  // }, [id]);
 
   const onFinish = async (values) => {
     try {
@@ -45,8 +47,8 @@ const UpdatePizza = () => {
     handleImageUrlChange,
     onFinish,
     onFinishFailed,
-    PizzaData,
-    setPizzaData
+    // PizzaData,
+    // setPizzaData
   };
 };
 export default UpdatePizza;

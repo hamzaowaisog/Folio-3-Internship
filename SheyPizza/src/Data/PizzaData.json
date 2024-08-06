@@ -15,15 +15,15 @@
         },
         {
           "name": "Large",
-          "price": 350
+          "price": 300
         }
       ],
       "id": "1"
     },
     {
-      "id": "2",
       "name": "Non Veg Supreme",
       "img": "https://www.dominos.co.in/files/items/Non-Veg_Supreme.jpg",
+      "description": "Bite into supreme delight of Black Olives, Onions, Grilled Mushrooms, Pepper BBQ Chicken, Peri-Peri Chicken, Grilled Chicken Rashers",
       "variant": [
         {
           "name": "Small",
@@ -38,27 +38,27 @@
           "price": 600
         }
       ],
-      "description": "Bite into supreme delight of Black Olives, Onions, Grilled Mushrooms, Pepper BBQ Chicken, Peri-Peri Chicken, Grilled Chicken Rashers"
+      "id": "2"
     },
     {
-      "id": "3",
       "name": "Golden Corn Pizza",
       "img": "https://www.dominos.co.in//files/items/golden_corn_veg.jpg",
+      "description": "Corn over the base makes it look beautiful. It is served with tomato sauce and chili flakes are sprinkled over the topping according to the taste. After mixing all the ingredients, it is baked by adding cheese and corn for added flavor to pizza. Corn adds health and sweet taste to the pizza.",
       "variant": [
         {
           "name": "Small",
-          "price": 150
+          "price": 200
         },
         {
           "name": "Medium",
-          "price": 300
+          "price": 250
         },
         {
           "name": "Large",
-          "price": 450
+          "price": 300
         }
       ],
-      "description": "Corn over the base makes it look beautiful. It is served with tomato sauce and chili flakes are sprinkled over the topping according to the taste. After mixing all the ingredients, it is baked by adding cheese and corn for added flavor to pizza. Corn adds health and sweet taste to the pizza."
+      "id": "3"
     },
     {
       "id": "4",
