@@ -1,155 +1,134 @@
-Pizza Ordering Application
-Welcome to the Pizza Ordering Application! This project is a comprehensive solution for managing pizza orders, allowing users to browse, add, update, and delete pizza items. It includes user authentication, a shopping cart, and admin functionalities for managing pizza data.
+# Pizza Ordering Application
 
-Features
-User Authentication: Register and log in as a user or admin.
-Pizza Management: Admins can add, update, and delete pizzas.
-Shopping Cart: Users can add pizzas to the cart, adjust quantities, and view the total price.
-Role-Based Access: Different functionalities are available based on user roles (admin or regular user).
-Responsive Design: User-friendly interface with responsive design using Ant Design.
-Project Structure
-Components
-1. AddPizzaData Hook
-Manages the state and functionality required for adding new pizza items.
+Welcome to the Pizza Ordering Application! This project allows users to manage pizza orders, including browsing, adding, updating, and deleting pizzas. It supports user authentication, a shopping cart, and role-based access for admins and regular users.
 
-State:
+## Features
 
-imageUrl: URL of the pizza image, managed locally.
-Functions:
+- **User Authentication**: Register and log in as a user or admin.
+- **Pizza Management**: Admins can add, update, and delete pizzas.
+- **Shopping Cart**: Users can add pizzas to the cart, adjust quantities, and view the total price.
+- **Role-Based Access**: Access different functionalities based on user roles (admin or regular user).
+- **Responsive Design**: User-friendly interface using Ant Design.
 
-handleImageUrlChange(e, setFieldValue): Updates the image URL state and Formik field.
-onFinish(values): Submits the form data to the server and navigates to the home page on success.
-onFinishFailed(errorInfo): Handles form submission failures with error messages.
-2. CardFunctionality Hook
-Handles the functionality for displaying pizza cards, including variant selection and quantity adjustments.
+## Project Structure
 
-State:
+### Components
 
-pizzaStates: Contains the state of all pizzas fetched from the API.
-isError: Boolean indicating if there was an error during data fetching.
-isLoading: Boolean indicating if the data is still loading.
-Functions:
+#### `AddPizzaData` Hook
 
-handleVariantChange(index, value): Updates the selected variant for a pizza.
-handleQuantityChange(index, value): Updates the quantity of a pizza.
-calculatePrice(index): Calculates the price based on the selected variant and quantity.
-3. CartDisplayFunction Hook
-Manages the cart's display and operations.
+- **Purpose**: Manages the state and functionality for adding new pizza items.
+- **Key States**:
+  - `imageUrl`: URL of the pizza image.
+- **Key Functions**:
+  - `handleImageUrlChange(e, setFieldValue)`: Updates the image URL and Formik field.
+  - `onFinish(values)`: Submits the form data and navigates to the home page.
+  - `onFinishFailed(errorInfo)`: Handles form submission errors.
 
-State:
+#### `CardFunctionality` Hook
 
-pizzaData: Data about pizzas available in the cart.
-cart: Items currently in the cart.
-Functions:
+- **Purpose**: Handles functionality for pizza cards, including variant selection and quantity adjustments.
+- **Key States**:
+  - `pizzaStates`: State of all pizzas.
+  - `isError`: Indicates if there was an error during data fetching.
+  - `isLoading`: Indicates if data is still loading.
+- **Key Functions**:
+  - `handleVariantChange(index, value)`: Updates selected variant.
+  - `handleQuantityChange(index, value)`: Updates quantity.
+  - `calculatePrice(index)`: Calculates price based on variant and quantity.
 
-handleIncreaseQuantity(item): Increases the quantity of a cart item.
-handleDecreaseQuantity(item): Decreases the quantity of a cart item.
-handleRemoveItem(item): Removes an item from the cart.
-getPrice(pizzaName, variantName): Retrieves the price of a specific pizza variant.
-getImageUrl(pizzaName): Retrieves the image URL of a pizza.
-totalPrice: Computes the total price of all items in the cart.
-success(): Displays a success message for successful cart operations.
-4. UpdatePizza Hook
-Handles the update functionality for existing pizza items.
+#### `CartDisplayFunction` Hook
 
-State:
+- **Purpose**: Manages cart display and operations.
+- **Key States**:
+  - `pizzaData`: Data about pizzas in the cart.
+  - `cart`: Items currently in the cart.
+- **Key Functions**:
+  - `handleIncreaseQuantity(item)`: Increases item quantity.
+  - `handleDecreaseQuantity(item)`: Decreases item quantity.
+  - `handleRemoveItem(item)`: Removes an item from the cart.
+  - `getPrice(pizzaName, variantName)`: Retrieves price of a pizza variant.
+  - `getImageUrl(pizzaName)`: Retrieves image URL of a pizza.
+  - `totalPrice`: Computes total price of cart items.
+  - `success()`: Displays success message for cart operations.
 
-imageUrl: URL of the pizza image, managed locally.
-Functions:
+#### `UpdatePizza` Hook
 
-handleImageUrlChange(e, setFieldValue): Updates the image URL state and Formik field.
-onFinish(values): Submits updated pizza data and navigates to the home page on success.
-onFinishFailed(errorInfo): Handles form submission failures with error messages.
-5. useModal Hook
-Provides modal functionality for displaying detailed pizza information.
+- **Purpose**: Handles update functionality for existing pizzas.
+- **Key States**:
+  - `imageUrl`: URL of the pizza image.
+- **Key Functions**:
+  - `handleImageUrlChange(e, setFieldValue)`: Updates the image URL and Formik field.
+  - `onFinish(values)`: Submits updated pizza data and navigates to the home page.
+  - `onFinishFailed(errorInfo)`: Handles form submission errors.
 
-State:
+#### `useModal` Hook
 
-isModalOpen: Indicates whether the modal is open.
-modalTitle: Title of the modal, set to the pizza name.
-modalDes: Description of the pizza displayed in the modal.
-modalImg: Image URL of the pizza.
-Functions:
+- **Purpose**: Provides modal functionality for displaying pizza details.
+- **Key States**:
+  - `isModalOpen`: Indicates if the modal is open.
+  - `modalTitle`: Title of the modal.
+  - `modalDes`: Description of the pizza.
+  - `modalImg`: Image URL of the pizza.
+- **Key Functions**:
+  - `showModal(pizza)`: Opens the modal and sets its content.
+  - `handleOk()`: Closes the modal.
+  - `handleCardClick(pizza)`: Opens the modal when a pizza card is clicked.
+  - `handleChildClick(event)`: Prevents event propagation in modal children.
 
-showModal(pizza): Opens the modal and sets its content based on the selected pizza.
-handleOk(): Closes the modal.
-handleCardClick(pizza): Opens the modal when a pizza card is clicked.
-handleChildClick(event): Prevents event propagation when interacting with modal children.
-6. useRoleBasedAccess Hook
-Manages access control based on user roles.
+### API Functions
 
-Parameters:
+#### `api.js`
 
-requiredRole: Role required to access a specific route or component.
-Returns:
-
-Redirect path if the user does not meet the access requirements.
-API Functions
-1. api.js
 Contains functions for making API requests using Axios.
 
-getData(endpoint): Makes a GET request to the specified endpoint.
-postData(endpoint, data): Makes a POST request with JSON data.
-putData(endpoint, data): Makes a PUT request with JSON data.
-deleteData(endpoint): Makes a DELETE request to the specified endpoint.
-2. useFetch.js
+- **`getData(endpoint)`**: Makes a GET request.
+- **`postData(endpoint, data)`**: Makes a POST request with JSON data.
+- **`putData(endpoint, data)`**: Makes a PUT request with JSON data.
+- **`deleteData(endpoint)`**: Makes a DELETE request.
+
+#### `useFetch.js`
+
 Contains thunk actions for fetching data using Redux Toolkit.
 
-fetchPizzaData: Fetches pizza data from the server.
-fetchUserData: Fetches user data from the server.
-fetchSpecificPizza(id): Fetches data for a specific pizza by ID.
-Redux Toolkit Usage
-1. Slices
-pizzaSlice:
+- **`fetchPizzaData`**: Fetches pizza data.
+- **`fetchUserData`**: Fetches user data.
+- **`fetchSpecificPizza(id)`**: Fetches data for a specific pizza by ID.
 
-Manages the state of pizza data, including loading and errors.
-Contains reducers for updating pizza variants and quantities.
-Includes async actions for fetching pizza data.
-cartSlice:
+### Redux Toolkit Usage
 
-Manages the cart's state, including item quantities and removal.
-Contains reducers for updating and removing cart items.
-authSlice:
+#### Slices
 
-Manages authentication status and user roles.
-Contains reducers for logging in and managing user roles.
-2. createAsyncThunk
-Used for handling asynchronous operations, such as API calls, and dispatching actions based on API responses.
+- **`pizzaSlice`**:
+  - Manages pizza data state, including loading and errors.
+  - Contains reducers for updating pizza variants and quantities.
+  - Includes async actions for fetching pizza data.
 
-fetchPizzaData: Fetches and updates pizza data.
-fetchUserData: Fetches and updates user data.
-Setup Instructions
-1. Prerequisites
+- **`cartSlice`**:
+  - Manages cart state, including item quantities and removal.
+  - Contains reducers for updating and removing cart items.
+
+- **`authSlice`**:
+  - Manages authentication status and user roles.
+  - Contains reducers for logging in and managing user roles.
+
+#### `createAsyncThunk`
+
+Handles asynchronous operations, such as API calls, and dispatches actions based on API responses.
+
+- **`fetchPizzaData`**: Fetches and updates pizza data.
+- **`fetchUserData`**: Fetches and updates user data.
+
+## Setup Instructions
+
+### Prerequisites
+
 Ensure that you have the following installed:
 
-Node.js (v14 or higher)
-npm or yarn
-2. Clone the Repository
-bash
-Copy code
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Clone the Repository
+
+```bash
 git clone https://github.com/hamzaowaisog/Folio-3-Internship.git
 cd Folio-3-Internship
-3. Install Dependencies
-bash
-Copy code
-npm install
-# or
-yarn install
-4. Configure Environment Variables
-Create a .env file in the root directory of the project and add your environment variables. Example:
-
-env
-Copy code
-VITE_API_BASE_URL=http://your-api-base-url.com
-5. Run the Development Server
-bash
-Copy code
-npm run dev
-# or
-yarn dev
-Contributing
-Contributions are welcome! Feel free to fork this repository and submit pull requests. Ensure that your contributions follow the existing style and include relevant tests.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
