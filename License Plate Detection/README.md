@@ -85,6 +85,3 @@ Contributions are welcome! If you have any suggestions or improvements, feel fre
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-```
-
-You can copy this content and paste it into your `README.md` file on GitHub.
