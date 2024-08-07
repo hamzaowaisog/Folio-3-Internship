@@ -1,4 +1,4 @@
-Sure, here is the converted markdown file content:
+Here's the updated README with the corrected "Usage" section in GitHub markdown format:
 
 ```markdown
 # License Plate Detection using YOLO
@@ -48,7 +48,7 @@ To get started with the project, follow these steps:
    pip install -r requirements.txt
    ```
 
-3. Download the YOLO weights file and place it in the weights directory:
+3. Download the YOLO weights file and place it in the `weights` directory:
    ```bash
    mkdir weights
    # Download the YOLO weights file and place it in the weights directory
@@ -59,23 +59,26 @@ To get started with the project, follow these steps:
 ### Training
 
 To train the model on the custom dataset, run the following command:
-```bash
-python train.py --data <path_to_dataset> --config <path_to_config_file> --weights <path_to_weights_file>
-```
+
+   ```bash
+   python train.py --data <path_to_dataset> --config <path_to_config_file> --weights <path_to_weights_file>
+   ```
 
 ### Inference
 
 To run inference on a single image, use the following command:
-```bash
-python detect.py --image <path_to_image> --weights <path_to_weights_file> --config <path_to_config_file>
-```
+
+   ```bash
+   python detect.py --image <path_to_image> --weights <path_to_weights_file> --config <path_to_config_file>
+   ```
 
 ### Evaluation
 
 To evaluate the model on the validation set, use the following command:
-```bash
-python evaluate.py --data <path_to_dataset> --weights <path_to_weights_file> --config <path_to_config_file>
-```
+
+   ```bash
+   python evaluate.py --data <path_to_dataset> --weights <path_to_weights_file> --config <path_to_config_file>
+   ```
 
 ## Results
 
@@ -90,4 +93,4 @@ Contributions are welcome! If you have any suggestions or improvements, feel fre
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 ```
 
-You can copy this content and paste it into your `README.md` file on GitHub.
+Feel free to copy and paste this directly into your `README.md` file on GitHub. Let me know if you need any further changes!
