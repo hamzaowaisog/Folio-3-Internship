@@ -1,6 +1,6 @@
-train: ../train/images
-val: ../valid/images
-test: ../test/images
+train: E:\FOLIO 3 INTERNSHIP\Folio-3-Internship\License Plate Detection\License Plates.v5-augmented-license-plates.yolov8\train\images
+val: E:\FOLIO 3 INTERNSHIP\Folio-3-Internship\License Plate Detection\License Plates.v5-augmented-license-plates.yolov8\valid\images 
+test: E:\FOLIO 3 INTERNSHIP\Folio-3-Internship\License Plate Detection\License Plates.v5-augmented-license-plates.yolov8\test\images
 
 nc: 2
 names: ['license-plate', 'vehicle']
