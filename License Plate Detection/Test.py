@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import matplotlib.pyplot as plt
 import cv2
 
-save_dir = r'E:\FOLIO 3 INTERNSHIP\Folio-3-Internship\License Plate Detection\checkpoints'
+save_dir = r'E:\FOLIO 3 INTERNSHIP\Folio-3-Internship\License Plate Detection\checkpoints\Test'
 
 # Define a color map for different classes
 # You can expand this dictionary based on the number of classes you have
@@ -16,7 +16,7 @@ color_map = {
 
 if __name__ == '__main__':
     model = YOLO(r"E:\FOLIO 3 INTERNSHIP\Folio-3-Internship\License Plate Detection\checkpoints\checkpoints5\weights\best.pt")
-    results = model.predict(source=r'E:\FOLIO 3 INTERNSHIP\Folio-3-Internship\License Plate Detection\License Plates.v5-augmented-license-plates.yolov8\valid\images', save=True, project=save_dir)
+    results = model.predict(source=r'E:\FOLIO 3 INTERNSHIP\Folio-3-Internship\License Plate Detection\License Plates.v5-augmented-license-plates.yolov8\test\images', save=True, project=save_dir)
 
     for result in results:
         print(result.boxes)
