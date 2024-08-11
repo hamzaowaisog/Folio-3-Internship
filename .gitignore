@@ -2,3 +2,7 @@
 shopping-app/
 
 License Plate Detection/.venv
+
+License Plate Detection/checkpoints/Test/Video/
+
+License Plate Detection/Video/
