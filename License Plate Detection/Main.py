@@ -12,18 +12,19 @@ license_plate_detector = YOLO(r'.\checkpoints\checkpoints5\weights\best.pt').to(
 #load video
 cap = cv2.VideoCapture(r'.\Video\Input.mp4')
 
-vehicles = [2,3,5,7]
+# vehicles = [2,3,5,7]
+vehicles = [1]
 #read frames
 frame_num = -1
 ret = True
 while ret:
     frame_num += 1
     ret,frame = cap.read()
-    if ret and frame_num <10:
+    if ret:
         results[frame_num] = {}
         #detect vehicle
-        detections = coco_model(frame)[0]
-        # detections = license_plate_detector(frame)[0]
+        # detections = coco_model(frame)[0]
+        detections = license_plate_detector(frame)[0]
         detections_ = []
         for detection in detections.boxes.data.tolist():
             print(detection)
@@ -32,7 +33,9 @@ while ret:
                 detections_.append([x1,y1,x2,y2,score]) 
 
         #track vehicles
-        track_ids = mot_tracker.update(np.asarray(detections_))
+        if len(detections_) > 0:
+            track_ids = mot_tracker.update(np.asarray(detections_))
+        # track_ids = mot_tracker.update(np.asarray(detections_))
 
         #detect license plate
         license_plates = license_plate_detector(frame)[0]
